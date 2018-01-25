@@ -12,12 +12,10 @@ macOS
 Build from source code
 -----
 **Dependencies**:
+ * **Sodium** [Installation](https://download.libsodium.org/doc/installation/index.html)
+ * **OpenSSL** [Installation](https://github.com/openssl/openssl/blob/master/INSTALL)
 
-**Sodium** [Installation](https://download.libsodium.org/doc/installation/index.html)
-
-**OpenSSL** [Installation](https://github.com/openssl/openssl/blob/master/INSTALL)
-
-**Pull source code**
+Then pull **source code** and submodules
 ```bash
     git clone https://github.com/ShadowsocksR-Live/ssrMac.git
     git submodule update --init
