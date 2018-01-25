@@ -15,6 +15,7 @@
 #import "ShadowsocksRunner.h"
 #import "ProfileManager.h"
 #import <AFNetworking/AFNetworking.h>
+#import "qrCodeOnScreen.h"
 
 #define kShadowsocksIsRunningKey @"ShadowsocksIsRunning"
 #define kShadowsocksRunningModeKey @"ShadowsocksMode"
@@ -300,6 +301,7 @@ void onPACChange(
 }
 
 - (void) scanQRCode {
+    NSArray<NSURL *> *qrs = [qrCodeOnScreen scan];
 }
 
 - (void)showLogs {

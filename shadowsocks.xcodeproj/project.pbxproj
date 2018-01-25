@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A40B2D12019E0BC00F33F80 /* qrCodeOnScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A40B2D02019E0BC00F33F80 /* qrCodeOnScreen.m */; };
 		3ACA8C8A20199CB500839E41 /* libsodium.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ACA8C8920199CB500839E41 /* libsodium.a */; };
 		3ACA8C8C20199CBA00839E41 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ACA8C8B20199CBA00839E41 /* libcrypto.a */; };
 		3ACA8CCB2019C17800839E41 /* ShadowsocksRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACA8CC92019C17800839E41 /* ShadowsocksRunner.m */; };
@@ -219,6 +220,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A40B2CF2019E0BC00F33F80 /* qrCodeOnScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = qrCodeOnScreen.h; sourceTree = "<group>"; };
+		3A40B2D02019E0BC00F33F80 /* qrCodeOnScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = qrCodeOnScreen.m; sourceTree = "<group>"; };
 		3ACA8C8920199CB500839E41 /* libsodium.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsodium.a; path = /usr/local/lib/libsodium.a; sourceTree = "<group>"; };
 		3ACA8C8B20199CBA00839E41 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = /usr/local/lib/libcrypto.a; sourceTree = "<group>"; };
 		3ACA8CC92019C17800839E41 /* ShadowsocksRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShadowsocksRunner.m; path = ShadowWeb/ShadowsocksRunner.m; sourceTree = SOURCE_ROOT; };
@@ -527,6 +530,8 @@
 				628C91C31A07AB4500BA1566 /* Configuration.m */,
 				EB1892B5027A6B1F1E2CDC12 /* ProfileManager.m */,
 				EB189071407B3A2A9B4C83CB /* ProfileManager.h */,
+				3A40B2CF2019E0BC00F33F80 /* qrCodeOnScreen.h */,
+				3A40B2D02019E0BC00F33F80 /* qrCodeOnScreen.m */,
 			);
 			path = ShadowsocksX;
 			sourceTree = "<group>";
@@ -837,6 +842,7 @@
 				3AD00A9C2018ECE500DA4490 /* local.m in Sources */,
 				3ACA8CCB2019C17800839E41 /* ShadowsocksRunner.m in Sources */,
 				EB189FE30A2E13F4D10D59ED /* SWBApplication.m in Sources */,
+				3A40B2D12019E0BC00F33F80 /* qrCodeOnScreen.m in Sources */,
 				EB1899E6974F61B38B2FFD2C /* ProfileManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
