@@ -6,19 +6,23 @@
 //  Copyright (c) 2014年 clowwindy. All rights reserved.
 //
 
-#import "GZIP.h"
+#import <GZIP/GZIP.h>
 #import "SWBConfigWindowController.h"
 #import "SWBQRCodeWindowController.h"
 #import "SWBAppDelegate.h"
-#import "GCDWebServer.h"
+#import <GCDWebServers/GCDWebServer.h>
+#import <GCDWebServers/GCDWebServerDataResponse.h>
 #import "ShadowsocksRunner.h"
 #import "ProfileManager.h"
-#import "AFNetworking.h"
+#import <AFNetworking/AFNetworking.h>
 
 #define kShadowsocksIsRunningKey @"ShadowsocksIsRunning"
 #define kShadowsocksRunningModeKey @"ShadowsocksMode"
 #define kShadowsocksHelper @"/Library/Application Support/ShadowsocksX/shadowsocks_sysconf"
 #define kSysconfVersion @"1.0.0"
+
+@interface SWBAppDelegate () <SWBConfigWindowControllerDelegate>
+@end
 
 @implementation SWBAppDelegate {
     SWBConfigWindowController *configWindowController;
@@ -36,7 +40,7 @@
     NSString *configPath;
     NSString *PACPath;
     NSString *userRulePath;
-    AFHTTPRequestOperationManager *manager;
+    AFHTTPSessionManager *manager;
 }
 
 static SWBAppDelegate *appDelegate;
@@ -59,7 +63,7 @@ static SWBAppDelegate *appDelegate;
 
     [webServer startWithPort:8090 bonjourName:@"webserver"];
 
-    manager = [AFHTTPRequestOperationManager manager];
+    manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
 
     self.item = [[NSStatusBar systemStatusBar] statusItemWithLength:20];
@@ -295,6 +299,9 @@ void onPACChange(
     }
 }
 
+- (void) scanQRCode {
+}
+
 - (void)showLogs {
     [[NSWorkspace sharedWorkspace] launchApplication:@"/Applications/Utilities/Console.app"];
 }
@@ -321,9 +328,13 @@ void onPACChange(
     }
 }
 
-- (void)configurationDidChange {
+#pragma mark SWBConfigWindowControllerDelegate
+
+- (void) configurationDidChange {
     [self updateMenu];
 }
+
+#pragma mark -
 
 - (void)runProxy {
     [ShadowsocksRunner reloadConfig];
@@ -460,7 +471,7 @@ void onPACChange(
 }
 
 - (void)updatePACFromGFWList {
-    [manager GET:@"https://autoproxy-gfwlist.googlecode.com/svn/trunk/gfwlist.txt" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:@"https://autoproxy-gfwlist.googlecode.com/svn/trunk/gfwlist.txt" parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         // Objective-C is bullshit
         NSData *data = responseObject;
         NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -500,7 +511,7 @@ void onPACChange(
         NSAlert *alert = [[NSAlert alloc] init];
         alert.messageText = @"Updated";
         [alert runModal];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
         NSAlert *alert = [NSAlert alertWithError:error];
         [alert runModal];
@@ -526,6 +537,5 @@ void onPACChange(
         }
     }
 }
-
 
 @end

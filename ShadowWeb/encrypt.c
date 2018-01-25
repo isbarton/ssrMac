@@ -201,8 +201,9 @@ void cleanup_encryption(struct encryption_ctx *ctx) {
 }
 
 void config_encryption(const char *password, const char *method) {
-    SSLeay_add_all_algorithms();
-    sodium_init();
+    OpenSSL_add_all_algorithms(); //SSLeay_add_all_algorithms();
+    int dummy = sodium_init();
+    (void)dummy;
     _method = encryption_method_from_string(method);
     if (_method == ENCRYPTION_TABLE) {
         get_table((unsigned char *) password);
