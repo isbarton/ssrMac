@@ -8,7 +8,7 @@
 
 #import "SWBQRCodeWindowController.h"
 
-@interface SWBQRCodeWindowController ()
+@interface SWBQRCodeWindowController () <WebFrameLoadDelegate>
 
 @end
 

@@ -46,4 +46,10 @@
     [super sendEvent:event];
 }
 
+- (void) undo:(id)sender {
+}
+
+- (void) redo:(id)sender {
+}
+
 @end
