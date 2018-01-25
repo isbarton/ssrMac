@@ -1,9 +1,6 @@
 [submodule "GCDWebServer"]
 	path = GCDWebServer
 	url = https://github.com/swisspol/GCDWebServer
-[submodule "iProxy"]
-	path = iProxy
-	url = https://github.com/clowwindy/iProxy.git
 [submodule "GZIP"]
 	path = GZIP
 	url = https://github.com/nicklockwood/GZIP.git
