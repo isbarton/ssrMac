@@ -16,6 +16,3 @@
 [submodule "AFNetworking"]
 	path = AFNetworking
 	url = https://github.com/AFNetworking/AFNetworking.git
-[submodule "OpenSSL-for-iPhone"]
-	path = OpenSSL-for-iPhone
-	url = https://github.com/x2on/OpenSSL-for-iPhone.git
