@@ -357,7 +357,7 @@
 				3AD00A962018ECE500DA4490 /* table.m */,
 				3ACA8CCC2019C1EA00839E41 /* socks5.h */,
 			);
-			path = ssrCore;
+			name = ssrCore;
 			sourceTree = "<group>";
 		};
 		3AD601382018D47700403182 /* Products */ = {
