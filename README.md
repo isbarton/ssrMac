@@ -3,15 +3,26 @@ Shadowsocks for iOS and OSX
 [![Build Status](https://travis-ci.org/shadowsocks/shadowsocks-iOS.svg?branch=master)](https://travis-ci.org/shadowsocks/shadowsocks-iOS)
 
 
-iOS
------
-[![iOS Icon](https://raw.github.com/shadowsocks/shadowsocks-iOS/master/ios_128.png)](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help)  
-[iOS Version](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help)
-
-OSX
+macOS
 -----
 [![OSX Icon](https://raw.github.com/shadowsocks/shadowsocks-iOS/master/osx_128.png)](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help)  
 [OSX Version](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help)
+
+
+Build from source code
+-----
+**Dependencies**:
+
+**Sodium** [Installation](https://download.libsodium.org/doc/installation/index.html)
+
+**OpenSSL** [Installation](https://github.com/openssl/openssl/blob/master/INSTALL)
+
+**Pull source code**
+```bash
+    git clone https://github.com/ShadowsocksR-Live/ssrMac.git
+    git submodule update --init
+```
+
 
 License
 -------
