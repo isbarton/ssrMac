@@ -108,7 +108,6 @@
     Profile *profile = [[Profile alloc] init];
     profile.server = @"";
     profile.serverPort = 443;
-    profile.method = [NSString stringWithUTF8String:ss_cipher_name_from_index(ss_cipher_aes_256_cfb)];
     profile.password = @"";
     [((NSMutableArray *) _configuration.profiles) addObject:profile];
     [self.tableView reloadData];
@@ -167,6 +166,12 @@
             [_portField setStringValue:[NSString stringWithFormat:@"%ld", (long)profile.serverPort]];
             [_methodBox setStringValue:profile.method];
             [_passwordField setStringValue:profile.password];
+            
+            [_protocolBox setStringValue:profile.protocol];
+            [_protocolParamField setStringValue:profile.protocolParam];
+            [_obfsBox setStringValue:profile.obfs];
+            [_obfsParamField setStringValue:profile.obfsParam];
+            
             if (profile.remarks) {
                 [_remarksField setStringValue:profile.remarks];
             } else {
@@ -186,6 +191,12 @@
         profile.serverPort = [_portField integerValue];
         profile.method = [_methodBox stringValue];
         profile.password = [_passwordField stringValue];
+        
+        profile.protocol = [_protocolBox stringValue];
+        profile.protocolParam = [_protocolParamField stringValue];
+        profile.obfs = [_obfsBox stringValue];
+        profile.obfsParam = [_obfsParamField stringValue];
+        
         profile.remarks = [_remarksField stringValue];
     }
 
@@ -209,6 +220,16 @@
         [_passwordField becomeFirstResponder];
         return NO;
     }
+    
+    if (_protocolBox.stringValue.length == 0) {
+        [_protocolBox becomeFirstResponder];
+        return NO;
+    }
+    if (_obfsBox.stringValue.length == 0) {
+        [_obfsBox becomeFirstResponder];
+        return NO;
+    }
+
     return YES;
 }
 
