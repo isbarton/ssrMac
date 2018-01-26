@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3A40B2D12019E0BC00F33F80 /* qrCodeOnScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A40B2D02019E0BC00F33F80 /* qrCodeOnScreen.m */; };
+		3A4AAEB4201B2FB7002F23AF /* ConfigWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A4AAEB3201B2FB7002F23AF /* ConfigWindow.xib */; };
 		3ACA8C8A20199CB500839E41 /* libsodium.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ACA8C8920199CB500839E41 /* libsodium.a */; };
 		3ACA8C8C20199CBA00839E41 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ACA8C8B20199CBA00839E41 /* libcrypto.a */; };
 		3ACA8CCB2019C17800839E41 /* ShadowsocksRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACA8CC92019C17800839E41 /* ShadowsocksRunner.m */; };
@@ -28,7 +29,6 @@
 		6232047118C0719D001A30B9 /* menu_icon_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 6232046F18C0719D001A30B9 /* menu_icon_disabled.png */; };
 		6232047218C0719D001A30B9 /* menu_icon_disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6232047018C0719D001A30B9 /* menu_icon_disabled@2x.png */; };
 		6232047718C08C6C001A30B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 628C3DE118AD5AFA0090632A /* Localizable.strings */; };
-		6232047818C08E2A001A30B9 /* ConfigWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6232047A18C08E2A001A30B9 /* ConfigWindow.xib */; };
 		625E5BBA19EA350F007A5124 /* QRCodeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 625E5BB919EA350F007A5124 /* QRCodeWindow.xib */; };
 		625E5BBD19EA36D2007A5124 /* SWBQRCodeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 625E5BBC19EA36D2007A5124 /* SWBQRCodeWindowController.m */; };
 		625E5BBE19EA3855007A5124 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627A6E5618B4887000493BBC /* WebKit.framework */; };
@@ -222,6 +222,7 @@
 /* Begin PBXFileReference section */
 		3A40B2CF2019E0BC00F33F80 /* qrCodeOnScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = qrCodeOnScreen.h; sourceTree = "<group>"; };
 		3A40B2D02019E0BC00F33F80 /* qrCodeOnScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = qrCodeOnScreen.m; sourceTree = "<group>"; };
+		3A4AAEB3201B2FB7002F23AF /* ConfigWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigWindow.xib; sourceTree = "<group>"; };
 		3ACA8C8920199CB500839E41 /* libsodium.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsodium.a; path = /usr/local/lib/libsodium.a; sourceTree = "<group>"; };
 		3ACA8C8B20199CBA00839E41 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = /usr/local/lib/libcrypto.a; sourceTree = "<group>"; };
 		3ACA8CC92019C17800839E41 /* ShadowsocksRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShadowsocksRunner.m; path = ShadowWeb/ShadowsocksRunner.m; sourceTree = SOURCE_ROOT; };
@@ -251,8 +252,6 @@
 		622BE4E518B7307200F22683 /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = "<group>"; };
 		6232046F18C0719D001A30B9 /* menu_icon_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon_disabled.png; sourceTree = "<group>"; };
 		6232047018C0719D001A30B9 /* menu_icon_disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_icon_disabled@2x.png"; sourceTree = "<group>"; };
-		6232047918C08E2A001A30B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ConfigWindow.xib; sourceTree = "<group>"; };
-		6232047B18C08E3A001A30B9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/ConfigWindow.xib"; sourceTree = "<group>"; };
 		625E5BB919EA350F007A5124 /* QRCodeWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QRCodeWindow.xib; sourceTree = "<group>"; };
 		625E5BBB19EA36D2007A5124 /* SWBQRCodeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWBQRCodeWindowController.h; sourceTree = "<group>"; };
 		625E5BBC19EA36D2007A5124 /* SWBQRCodeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWBQRCodeWindowController.m; sourceTree = "<group>"; };
@@ -547,12 +546,12 @@
 				6232046F18C0719D001A30B9 /* menu_icon_disabled.png */,
 				6232047018C0719D001A30B9 /* menu_icon_disabled@2x.png */,
 				629AC93218B49341001D2771 /* Application.xib */,
+				3A4AAEB3201B2FB7002F23AF /* ConfigWindow.xib */,
 				627A6E0018B47E9300493BBC /* ssrMac-Info.plist */,
 				627A6E0118B47E9300493BBC /* InfoPlist.strings */,
 				627A6E0418B47E9300493BBC /* main.m */,
 				627A6E0618B47E9300493BBC /* ssrMac-Prefix.pch */,
 				627A6E0718B47E9300493BBC /* Credits.rtf */,
-				6232047A18C08E2A001A30B9 /* ConfigWindow.xib */,
 				620530BD18D44FB600887D3E /* install_helper.sh */,
 				625E5BB919EA350F007A5124 /* QRCodeWindow.xib */,
 				625E5BC319EA3A6B007A5124 /* qrcode.htm */,
@@ -799,13 +798,13 @@
 				6232047718C08C6C001A30B9 /* Localizable.strings in Resources */,
 				625E5BBA19EA350F007A5124 /* QRCodeWindow.xib in Resources */,
 				629AC93318B49341001D2771 /* Application.xib in Resources */,
+				3A4AAEB4201B2FB7002F23AF /* ConfigWindow.xib in Resources */,
 				620530BE18D44FB600887D3E /* install_helper.sh in Resources */,
 				6232047218C0719D001A30B9 /* menu_icon_disabled@2x.png in Resources */,
 				625E5BC119EA3A43007A5124 /* jquery.min.js in Resources */,
 				625E5BC519EA3A6B007A5124 /* qrcode.htm in Resources */,
 				625E5BC219EA3A43007A5124 /* qrcode.min.js in Resources */,
 				627A6E0318B47E9300493BBC /* InfoPlist.strings in Resources */,
-				6232047818C08E2A001A30B9 /* ConfigWindow.xib in Resources */,
 				62E27E5518C1D03D0086033D /* proxy.pac.gz in Resources */,
 				62E2E19D1A5ABE5C00C9A2E1 /* abp.js in Resources */,
 				622BE4E618B7307200F22683 /* menu_icon@2x.png in Resources */,
@@ -879,15 +878,6 @@
 				621571B216CF6BCB003D96B4 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		6232047A18C08E2A001A30B9 /* ConfigWindow.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6232047918C08E2A001A30B9 /* en */,
-				6232047B18C08E3A001A30B9 /* zh-Hans */,
-			);
-			name = ConfigWindow.xib;
 			sourceTree = "<group>";
 		};
 		627A6E0118B47E9300493BBC /* InfoPlist.strings */ = {

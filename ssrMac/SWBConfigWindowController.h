@@ -19,6 +19,10 @@
 @property (nonatomic, strong) IBOutlet NSTextField *portField;
 @property (nonatomic, strong) IBOutlet NSComboBox *methodBox;
 @property (nonatomic, strong) IBOutlet NSSecureTextField *passwordField;
+@property (nonatomic, strong) IBOutlet NSComboBox *protocolBox;
+@property (nonatomic, strong) IBOutlet NSTextField *protocolParamField;
+@property (nonatomic, strong) IBOutlet NSComboBox *obfsBox;
+@property (nonatomic, strong) IBOutlet NSTextField *obfsParamField;
 @property (nonatomic, strong) IBOutlet NSTextField *remarksField;
 @property (nonatomic, strong) IBOutlet NSButton *okButton;
 @property (nonatomic, strong) IBOutlet NSButton *cancelButton;
