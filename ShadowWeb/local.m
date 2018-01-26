@@ -2,6 +2,7 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <netinet/tcp.h>
+#include <sys/fcntl.h>
 
 #include "local.h"
 #include "socks5.h"
@@ -561,7 +562,7 @@ void set_config(const char *server, const char *remote_port, const char* passwor
     config_encryption(password, method);
 }
 
-int local_main ()
+int local_main (void)
 {
     int listenfd;
     listenfd = create_and_bind("1080");

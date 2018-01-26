@@ -98,7 +98,7 @@
     }
     Profile *profile = [[Profile alloc] init];
     profile.server = @"";
-    profile.serverPort = 8388;
+    profile.serverPort = 443;
     profile.method = @"aes-256-cfb";
     profile.password = @"";
     [((NSMutableArray *) configuration.profiles) addObject:profile];

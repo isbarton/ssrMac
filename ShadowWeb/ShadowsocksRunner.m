@@ -39,11 +39,15 @@
             set_config("106.186.124.182", "8911", "Shadowsocks", "aes-128-cfb");
             memcpy(shadowsocks_key, "\x45\xd1\xd9\x9e\xbd\xf5\x8c\x85\x34\x55\xdd\x65\x46\xcd\x06\xd3", 16);
         } else {
-            NSString *v = [[NSUserDefaults standardUserDefaults] objectForKey:kShadowsocksEncryptionKey];
-            if (!v) {
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSString *v = [defaults objectForKey:kShadowsocksEncryptionKey];
+            if (v.length == 0) {
                 v = @"aes-256-cfb";
             }
-            set_config([[[NSUserDefaults standardUserDefaults] stringForKey:kShadowsocksIPKey] cStringUsingEncoding:NSUTF8StringEncoding], [[[NSUserDefaults standardUserDefaults] stringForKey:kShadowsocksPortKey] cStringUsingEncoding:NSUTF8StringEncoding], [[[NSUserDefaults standardUserDefaults] stringForKey:kShadowsocksPasswordKey] cStringUsingEncoding:NSUTF8StringEncoding], [v cStringUsingEncoding:NSUTF8StringEncoding]);
+            const char *host = [[defaults stringForKey:kShadowsocksIPKey] cStringUsingEncoding:NSUTF8StringEncoding];
+            const char *port = [[defaults stringForKey:kShadowsocksPortKey] cStringUsingEncoding:NSUTF8StringEncoding];
+            const char *password = [[defaults stringForKey:kShadowsocksPasswordKey] cStringUsingEncoding:NSUTF8StringEncoding];
+            set_config(host, port, password, [v cStringUsingEncoding:NSUTF8StringEncoding]);
         }
     }
 }
