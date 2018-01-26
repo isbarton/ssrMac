@@ -49,6 +49,12 @@
             const char *host = [[defaults stringForKey:kShadowsocksIPKey] cStringUsingEncoding:NSUTF8StringEncoding];
             const char *port = [[defaults stringForKey:kShadowsocksPortKey] cStringUsingEncoding:NSUTF8StringEncoding];
             const char *password = [[defaults stringForKey:kShadowsocksPasswordKey] cStringUsingEncoding:NSUTF8StringEncoding];
+
+            kShadowsocksProtocolKey;
+            kShadowsocksProtocolParamKey;
+            kShadowsocksObfsKey;
+            kShadowsocksObfsParamKey;
+
             set_config(host, port, password, [v cStringUsingEncoding:NSUTF8StringEncoding]);
         }
     }
@@ -96,6 +102,12 @@
         [ShadowsocksRunner saveConfigForKey:kShadowsocksPortKey value:port];
         [ShadowsocksRunner saveConfigForKey:kShadowsocksPasswordKey value:password];
         [ShadowsocksRunner saveConfigForKey:kShadowsocksEncryptionKey value:method];
+
+        kShadowsocksProtocolKey;
+        kShadowsocksProtocolParamKey;
+        kShadowsocksObfsKey;
+        kShadowsocksObfsParamKey;
+
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kShadowsocksUsePublicServer];
         [ShadowsocksRunner reloadConfig];
         return YES;
@@ -114,7 +126,12 @@
                        [ShadowsocksRunner configForKey:kShadowsocksPasswordKey],
                        [ShadowsocksRunner configForKey:kShadowsocksIPKey],
                        [ShadowsocksRunner configForKey:kShadowsocksPortKey]];
-    
+
+    kShadowsocksProtocolKey;
+    kShadowsocksProtocolParamKey;
+    kShadowsocksObfsKey;
+    kShadowsocksObfsParamKey;
+
     NSString *base64String = [[parts dataUsingEncoding:NSUTF8StringEncoding] base64Encoding];
     NSString *urlString = [NSString stringWithFormat:@"ss://%@", base64String];
     return [NSURL URLWithString:urlString];

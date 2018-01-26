@@ -9,21 +9,25 @@
 - (id)initWithJSONDictionary:(NSDictionary *)dictionary {
 
     self = [super init];
-    if (![dictionary isKindOfClass:[NSDictionary class]])
+    if (![dictionary isKindOfClass:[NSDictionary class]]) {
         return nil;
+    }
 
     if (self) {
- 
-        self.server = (dictionary[@"server"] != [NSNull null]) ? dictionary[@"server"] : nil;
-  
+         self.server = (dictionary[@"server"] != [NSNull null]) ? dictionary[@"server"] : nil;
+
         self.serverPort = (dictionary[@"server_port"] != [NSNull null]) ? [dictionary[@"server_port"] integerValue] : 0;
-  
+
         self.remarks = (dictionary[@"remarks"] != [NSNull null]) ? dictionary[@"remarks"] : nil;
-  
+
         self.password = (dictionary[@"password"] != [NSNull null]) ? dictionary[@"password"] : nil;
-  
+
         self.method = (dictionary[@"method"] != [NSNull null]) ? dictionary[@"method"] : nil;
- 
+        
+        _protocol = (dictionary[@"protocol"] != [NSNull null]) ? dictionary[@"protocol"] : nil;
+        _protocolParam = (dictionary[@"protocolParam"] != [NSNull null]) ? dictionary[@"protocolParam"] : nil;
+        _obfs = (dictionary[@"obfs"] != [NSNull null]) ? dictionary[@"obfs"] : nil;
+        _obfsParam = (dictionary[@"obfsParam"] != [NSNull null]) ? dictionary[@"obfsParam"] : nil;
     }
     return self;
 }
@@ -56,7 +60,12 @@
     dictionary[@"password"] = (self.password != nil) ? self.password : [NSNull null];
   
     dictionary[@"method"] = (self.method != nil) ? self.method : [NSNull null];
- 
+    
+    dictionary[@"protocol"] = (_protocol != nil) ? _protocol : [NSNull null];
+    dictionary[@"protocolParam"] = (_protocolParam != nil) ? _protocolParam : [NSNull null];
+    dictionary[@"obfs"] = (_obfs != nil) ? _obfs : [NSNull null];
+    dictionary[@"obfsParam"] = (_obfsParam != nil) ? _obfsParam : [NSNull null];
+
     return dictionary;
 }
 

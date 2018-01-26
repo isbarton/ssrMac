@@ -10,6 +10,12 @@
 #define kShadowsocksPortKey @"proxy port"
 #define kShadowsocksPasswordKey @"proxy password"
 #define kShadowsocksEncryptionKey @"proxy encryption"
+
+#define kShadowsocksProtocolKey @"proxy protocol"
+#define kShadowsocksProtocolParamKey @"proxy protocolParam"
+#define kShadowsocksObfsKey @"proxy obfs"
+#define kShadowsocksObfsParamKey @"proxy obfsParam"
+
 #define kShadowsocksProxyModeKey @"proxy mode"
 #define kShadowsocksUsePublicServer @"public server"
 

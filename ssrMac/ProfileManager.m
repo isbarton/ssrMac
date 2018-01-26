@@ -28,6 +28,12 @@
             profile.serverPort = [[ShadowsocksRunner configForKey:kShadowsocksPortKey] integerValue];
             profile.password = [ShadowsocksRunner configForKey:kShadowsocksPasswordKey];
             profile.method = [ShadowsocksRunner configForKey:kShadowsocksEncryptionKey];
+            
+            profile.protocol = [ShadowsocksRunner configForKey:kShadowsocksProtocolKey];
+            profile.protocolParam = [ShadowsocksRunner configForKey:kShadowsocksProtocolParamKey];
+            profile.obfs = [ShadowsocksRunner configForKey:kShadowsocksObfsKey];
+            profile.obfsParam = [ShadowsocksRunner configForKey:kShadowsocksObfsParamKey];
+
             [((NSMutableArray *)configuration.profiles) addObject:profile];
         }
         return configuration;
@@ -67,6 +73,12 @@
         [ShadowsocksRunner saveConfigForKey:kShadowsocksPortKey value:[NSString stringWithFormat:@"%ld", (long)profile.serverPort]];
         [ShadowsocksRunner saveConfigForKey:kShadowsocksPasswordKey value:profile.password];
         [ShadowsocksRunner saveConfigForKey:kShadowsocksEncryptionKey value:profile.method];
+
+        [ShadowsocksRunner saveConfigForKey:kShadowsocksProtocolKey value:profile.protocol];
+        [ShadowsocksRunner saveConfigForKey:kShadowsocksProtocolParamKey value:profile.protocolParam];
+        [ShadowsocksRunner saveConfigForKey:kShadowsocksObfsKey value:profile.obfs];
+        [ShadowsocksRunner saveConfigForKey:kShadowsocksObfsParamKey value:profile.obfsParam];
+
         [ShadowsocksRunner reloadConfig];
     }
 }
