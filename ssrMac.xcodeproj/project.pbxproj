@@ -9,6 +9,42 @@
 /* Begin PBXBuildFile section */
 		3A40B2D12019E0BC00F33F80 /* qrCodeOnScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A40B2D02019E0BC00F33F80 /* qrCodeOnScreen.m */; };
 		3A4AAEB4201B2FB7002F23AF /* ConfigWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A4AAEB3201B2FB7002F23AF /* ConfigWindow.xib */; };
+		3A4AAEB6201B5981002F23AF /* libuv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4AAEB5201B5981002F23AF /* libuv.a */; };
+		3A4AAEE7201B5B74002F23AF /* encrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4AAED5201B5B72002F23AF /* encrypt.h */; };
+		3A4AAEEA201B5B74002F23AF /* cache.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AAED8201B5B73002F23AF /* cache.c */; };
+		3A4AAEF1201B5B74002F23AF /* ssrbuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4AAEDF201B5B74002F23AF /* ssrbuffer.h */; };
+		3A4AAEF2201B5B74002F23AF /* encrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AAEE0201B5B74002F23AF /* encrypt.c */; };
+		3A4AAEF4201B5B74002F23AF /* cache.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4AAEE2201B5B74002F23AF /* cache.h */; };
+		3A4AAEF5201B5B74002F23AF /* ssrbuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AAEE3201B5B74002F23AF /* ssrbuffer.c */; };
+		3A4AAF0B201B5BAD002F23AF /* auth.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AAEF9201B5BAD002F23AF /* auth.c */; };
+		3A4AAF0C201B5BAD002F23AF /* auth.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4AAEFA201B5BAD002F23AF /* auth.h */; };
+		3A4AAF0D201B5BAD002F23AF /* auth_chain.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AAEFB201B5BAD002F23AF /* auth_chain.c */; };
+		3A4AAF0E201B5BAD002F23AF /* auth_chain.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4AAEFC201B5BAD002F23AF /* auth_chain.h */; };
+		3A4AAF0F201B5BAD002F23AF /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AAEFD201B5BAD002F23AF /* base64.c */; };
+		3A4AAF10201B5BAD002F23AF /* base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4AAEFE201B5BAD002F23AF /* base64.h */; };
+		3A4AAF11201B5BAD002F23AF /* crc32.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AAEFF201B5BAD002F23AF /* crc32.c */; };
+		3A4AAF12201B5BAD002F23AF /* crc32.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4AAF00201B5BAD002F23AF /* crc32.h */; };
+		3A4AAF13201B5BAD002F23AF /* http_simple.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AAF01201B5BAD002F23AF /* http_simple.c */; };
+		3A4AAF14201B5BAD002F23AF /* http_simple.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4AAF02201B5BAD002F23AF /* http_simple.h */; };
+		3A4AAF15201B5BAD002F23AF /* obfs.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AAF03201B5BAD002F23AF /* obfs.c */; };
+		3A4AAF16201B5BAD002F23AF /* obfs.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4AAF04201B5BAD002F23AF /* obfs.h */; };
+		3A4AAF17201B5BAD002F23AF /* obfsutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AAF05201B5BAD002F23AF /* obfsutil.c */; };
+		3A4AAF18201B5BAD002F23AF /* obfsutil.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4AAF06201B5BAD002F23AF /* obfsutil.h */; };
+		3A4AAF19201B5BAD002F23AF /* tls1.2_ticket.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AAF07201B5BAD002F23AF /* tls1.2_ticket.c */; };
+		3A4AAF1A201B5BAD002F23AF /* tls1.2_ticket.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4AAF08201B5BAD002F23AF /* tls1.2_ticket.h */; };
+		3A4AAF1B201B5BAD002F23AF /* verify.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AAF09201B5BAD002F23AF /* verify.c */; };
+		3A4AAF1C201B5BAD002F23AF /* verify.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4AAF0A201B5BAD002F23AF /* verify.h */; };
+		3A4AAF28201B5C1D002F23AF /* defs.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4AAF1E201B5C1D002F23AF /* defs.h */; };
+		3A4AAF29201B5C1D002F23AF /* listener.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AAF1F201B5C1D002F23AF /* listener.c */; };
+		3A4AAF2B201B5C1D002F23AF /* s5.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AAF21201B5C1D002F23AF /* s5.c */; };
+		3A4AAF2C201B5C1D002F23AF /* s5.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4AAF22201B5C1D002F23AF /* s5.h */; };
+		3A4AAF2D201B5C1D002F23AF /* ssrcipher.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AAF23201B5C1D002F23AF /* ssrcipher.c */; };
+		3A4AAF2E201B5C1D002F23AF /* ssrcipher.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4AAF24201B5C1D002F23AF /* ssrcipher.h */; };
+		3A4AAF2F201B5C1D002F23AF /* tunnel.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AAF25201B5C1D002F23AF /* tunnel.c */; };
+		3A4AAF30201B5C1D002F23AF /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AAF26201B5C1D002F23AF /* util.c */; };
+		3A4AAF31201B5C1D002F23AF /* util.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4AAF27201B5C1D002F23AF /* util.h */; };
+		3A4AAF34201B5C89002F23AF /* ssr_cipher_names.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AAF32201B5C89002F23AF /* ssr_cipher_names.c */; };
+		3A4AAF35201B5C89002F23AF /* ssr_cipher_names.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4AAF33201B5C89002F23AF /* ssr_cipher_names.h */; };
 		3ACA8C8A20199CB500839E41 /* libsodium.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ACA8C8920199CB500839E41 /* libsodium.a */; };
 		3ACA8C8C20199CBA00839E41 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ACA8C8B20199CBA00839E41 /* libcrypto.a */; };
 		3ACA8CCB2019C17800839E41 /* ShadowsocksRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACA8CC92019C17800839E41 /* ShadowsocksRunner.m */; };
@@ -223,6 +259,43 @@
 		3A40B2CF2019E0BC00F33F80 /* qrCodeOnScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = qrCodeOnScreen.h; sourceTree = "<group>"; };
 		3A40B2D02019E0BC00F33F80 /* qrCodeOnScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = qrCodeOnScreen.m; sourceTree = "<group>"; };
 		3A4AAEB3201B2FB7002F23AF /* ConfigWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigWindow.xib; sourceTree = "<group>"; };
+		3A4AAEB5201B5981002F23AF /* libuv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libuv.a; path = /usr/local/lib/libuv.a; sourceTree = "<group>"; };
+		3A4AAEBE201B5AC3002F23AF /* libssr-native.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libssr-native.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A4AAED5201B5B72002F23AF /* encrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = encrypt.h; path = "shadowsocksr-native/src/encrypt.h"; sourceTree = "<group>"; };
+		3A4AAED8201B5B73002F23AF /* cache.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cache.c; path = "shadowsocksr-native/src/cache.c"; sourceTree = "<group>"; };
+		3A4AAEDF201B5B74002F23AF /* ssrbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ssrbuffer.h; path = "shadowsocksr-native/src/ssrbuffer.h"; sourceTree = "<group>"; };
+		3A4AAEE0201B5B74002F23AF /* encrypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = encrypt.c; path = "shadowsocksr-native/src/encrypt.c"; sourceTree = "<group>"; };
+		3A4AAEE2201B5B74002F23AF /* cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cache.h; path = "shadowsocksr-native/src/cache.h"; sourceTree = "<group>"; };
+		3A4AAEE3201B5B74002F23AF /* ssrbuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ssrbuffer.c; path = "shadowsocksr-native/src/ssrbuffer.c"; sourceTree = "<group>"; };
+		3A4AAEF9201B5BAD002F23AF /* auth.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = auth.c; sourceTree = "<group>"; };
+		3A4AAEFA201B5BAD002F23AF /* auth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = auth.h; sourceTree = "<group>"; };
+		3A4AAEFB201B5BAD002F23AF /* auth_chain.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = auth_chain.c; sourceTree = "<group>"; };
+		3A4AAEFC201B5BAD002F23AF /* auth_chain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = auth_chain.h; sourceTree = "<group>"; };
+		3A4AAEFD201B5BAD002F23AF /* base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base64.c; sourceTree = "<group>"; };
+		3A4AAEFE201B5BAD002F23AF /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
+		3A4AAEFF201B5BAD002F23AF /* crc32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crc32.c; sourceTree = "<group>"; };
+		3A4AAF00201B5BAD002F23AF /* crc32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crc32.h; sourceTree = "<group>"; };
+		3A4AAF01201B5BAD002F23AF /* http_simple.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = http_simple.c; sourceTree = "<group>"; };
+		3A4AAF02201B5BAD002F23AF /* http_simple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = http_simple.h; sourceTree = "<group>"; };
+		3A4AAF03201B5BAD002F23AF /* obfs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = obfs.c; sourceTree = "<group>"; };
+		3A4AAF04201B5BAD002F23AF /* obfs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = obfs.h; sourceTree = "<group>"; };
+		3A4AAF05201B5BAD002F23AF /* obfsutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = obfsutil.c; sourceTree = "<group>"; };
+		3A4AAF06201B5BAD002F23AF /* obfsutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = obfsutil.h; sourceTree = "<group>"; };
+		3A4AAF07201B5BAD002F23AF /* tls1.2_ticket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tls1.2_ticket.c; sourceTree = "<group>"; };
+		3A4AAF08201B5BAD002F23AF /* tls1.2_ticket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tls1.2_ticket.h; sourceTree = "<group>"; };
+		3A4AAF09201B5BAD002F23AF /* verify.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = verify.c; sourceTree = "<group>"; };
+		3A4AAF0A201B5BAD002F23AF /* verify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = verify.h; sourceTree = "<group>"; };
+		3A4AAF1E201B5C1D002F23AF /* defs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = defs.h; sourceTree = "<group>"; };
+		3A4AAF1F201B5C1D002F23AF /* listener.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = listener.c; sourceTree = "<group>"; };
+		3A4AAF21201B5C1D002F23AF /* s5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s5.c; sourceTree = "<group>"; };
+		3A4AAF22201B5C1D002F23AF /* s5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = s5.h; sourceTree = "<group>"; };
+		3A4AAF23201B5C1D002F23AF /* ssrcipher.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ssrcipher.c; sourceTree = "<group>"; };
+		3A4AAF24201B5C1D002F23AF /* ssrcipher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ssrcipher.h; sourceTree = "<group>"; };
+		3A4AAF25201B5C1D002F23AF /* tunnel.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tunnel.c; sourceTree = "<group>"; };
+		3A4AAF26201B5C1D002F23AF /* util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = util.c; sourceTree = "<group>"; };
+		3A4AAF27201B5C1D002F23AF /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
+		3A4AAF32201B5C89002F23AF /* ssr_cipher_names.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ssr_cipher_names.c; path = "shadowsocksr-native/src/ssr_cipher_names.c"; sourceTree = "<group>"; };
+		3A4AAF33201B5C89002F23AF /* ssr_cipher_names.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ssr_cipher_names.h; path = "shadowsocksr-native/src/ssr_cipher_names.h"; sourceTree = "<group>"; };
 		3ACA8C8920199CB500839E41 /* libsodium.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsodium.a; path = /usr/local/lib/libsodium.a; sourceTree = "<group>"; };
 		3ACA8C8B20199CBA00839E41 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = /usr/local/lib/libcrypto.a; sourceTree = "<group>"; };
 		3ACA8CC92019C17800839E41 /* ShadowsocksRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShadowsocksRunner.m; path = ShadowWeb/ShadowsocksRunner.m; sourceTree = SOURCE_ROOT; };
@@ -314,6 +387,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3A4AAEBB201B5AC3002F23AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6205309218D4443E00887D3E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -338,12 +418,73 @@
 				62E2E1991A5AB21E00C9A2E1 /* SystemConfiguration.framework in Frameworks */,
 				3ACA8C8A20199CB500839E41 /* libsodium.a in Frameworks */,
 				3ACA8C8C20199CBA00839E41 /* libcrypto.a in Frameworks */,
+				3A4AAEB6201B5981002F23AF /* libuv.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A4AAED3201B5AF3002F23AF /* ssr-native */ = {
+			isa = PBXGroup;
+			children = (
+				3A4AAF1D201B5C1D002F23AF /* client */,
+				3A4AAEF8201B5BAD002F23AF /* obfs */,
+				3A4AAED8201B5B73002F23AF /* cache.c */,
+				3A4AAEE2201B5B74002F23AF /* cache.h */,
+				3A4AAEE0201B5B74002F23AF /* encrypt.c */,
+				3A4AAED5201B5B72002F23AF /* encrypt.h */,
+				3A4AAEE3201B5B74002F23AF /* ssrbuffer.c */,
+				3A4AAEDF201B5B74002F23AF /* ssrbuffer.h */,
+				3A4AAF32201B5C89002F23AF /* ssr_cipher_names.c */,
+				3A4AAF33201B5C89002F23AF /* ssr_cipher_names.h */,
+			);
+			name = "ssr-native";
+			sourceTree = "<group>";
+		};
+		3A4AAEF8201B5BAD002F23AF /* obfs */ = {
+			isa = PBXGroup;
+			children = (
+				3A4AAEF9201B5BAD002F23AF /* auth.c */,
+				3A4AAEFA201B5BAD002F23AF /* auth.h */,
+				3A4AAEFB201B5BAD002F23AF /* auth_chain.c */,
+				3A4AAEFC201B5BAD002F23AF /* auth_chain.h */,
+				3A4AAEFD201B5BAD002F23AF /* base64.c */,
+				3A4AAEFE201B5BAD002F23AF /* base64.h */,
+				3A4AAEFF201B5BAD002F23AF /* crc32.c */,
+				3A4AAF00201B5BAD002F23AF /* crc32.h */,
+				3A4AAF01201B5BAD002F23AF /* http_simple.c */,
+				3A4AAF02201B5BAD002F23AF /* http_simple.h */,
+				3A4AAF03201B5BAD002F23AF /* obfs.c */,
+				3A4AAF04201B5BAD002F23AF /* obfs.h */,
+				3A4AAF05201B5BAD002F23AF /* obfsutil.c */,
+				3A4AAF06201B5BAD002F23AF /* obfsutil.h */,
+				3A4AAF07201B5BAD002F23AF /* tls1.2_ticket.c */,
+				3A4AAF08201B5BAD002F23AF /* tls1.2_ticket.h */,
+				3A4AAF09201B5BAD002F23AF /* verify.c */,
+				3A4AAF0A201B5BAD002F23AF /* verify.h */,
+			);
+			name = obfs;
+			path = "shadowsocksr-native/src/obfs";
+			sourceTree = "<group>";
+		};
+		3A4AAF1D201B5C1D002F23AF /* client */ = {
+			isa = PBXGroup;
+			children = (
+				3A4AAF1E201B5C1D002F23AF /* defs.h */,
+				3A4AAF1F201B5C1D002F23AF /* listener.c */,
+				3A4AAF21201B5C1D002F23AF /* s5.c */,
+				3A4AAF22201B5C1D002F23AF /* s5.h */,
+				3A4AAF23201B5C1D002F23AF /* ssrcipher.c */,
+				3A4AAF24201B5C1D002F23AF /* ssrcipher.h */,
+				3A4AAF25201B5C1D002F23AF /* tunnel.c */,
+				3A4AAF26201B5C1D002F23AF /* util.c */,
+				3A4AAF27201B5C1D002F23AF /* util.h */,
+			);
+			name = client;
+			path = "shadowsocksr-native/src/client";
+			sourceTree = "<group>";
+		};
 		3A9F2B9B2017A3D00043B609 /* ssrCore */ = {
 			isa = PBXGroup;
 			children = (
@@ -419,6 +560,7 @@
 		6215719C16CF6BCA003D96B4 = {
 			isa = PBXGroup;
 			children = (
+				3A4AAED3201B5AF3002F23AF /* ssr-native */,
 				621571AE16CF6BCB003D96B4 /* ShadowWeb */,
 				627A6DFE18B47E9300493BBC /* ssrMac */,
 				6205309718D4443E00887D3E /* ssr_mac_sysconf */,
@@ -433,6 +575,7 @@
 			children = (
 				627A6DF718B47E9300493BBC /* ssrMac.app */,
 				6205309518D4443E00887D3E /* ssr_mac_sysconf */,
+				3A4AAEBE201B5AC3002F23AF /* libssr-native.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -440,6 +583,7 @@
 		621571A716CF6BCB003D96B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3A4AAEB5201B5981002F23AF /* libuv.a */,
 				3ACA8C8B20199CBA00839E41 /* libcrypto.a */,
 				3ACA8C8920199CB500839E41 /* libsodium.a */,
 				62E2E19A1A5AB23700C9A2E1 /* Security.framework */,
@@ -562,7 +706,51 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		3A4AAEBC201B5AC3002F23AF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A4AAF1C201B5BAD002F23AF /* verify.h in Headers */,
+				3A4AAF2C201B5C1D002F23AF /* s5.h in Headers */,
+				3A4AAF0E201B5BAD002F23AF /* auth_chain.h in Headers */,
+				3A4AAF31201B5C1D002F23AF /* util.h in Headers */,
+				3A4AAF0C201B5BAD002F23AF /* auth.h in Headers */,
+				3A4AAF35201B5C89002F23AF /* ssr_cipher_names.h in Headers */,
+				3A4AAF2E201B5C1D002F23AF /* ssrcipher.h in Headers */,
+				3A4AAF12201B5BAD002F23AF /* crc32.h in Headers */,
+				3A4AAEF1201B5B74002F23AF /* ssrbuffer.h in Headers */,
+				3A4AAF16201B5BAD002F23AF /* obfs.h in Headers */,
+				3A4AAEF4201B5B74002F23AF /* cache.h in Headers */,
+				3A4AAEE7201B5B74002F23AF /* encrypt.h in Headers */,
+				3A4AAF1A201B5BAD002F23AF /* tls1.2_ticket.h in Headers */,
+				3A4AAF28201B5C1D002F23AF /* defs.h in Headers */,
+				3A4AAF10201B5BAD002F23AF /* base64.h in Headers */,
+				3A4AAF14201B5BAD002F23AF /* http_simple.h in Headers */,
+				3A4AAF18201B5BAD002F23AF /* obfsutil.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		3A4AAEBD201B5AC3002F23AF /* ssr-native */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A4AAED2201B5AC4002F23AF /* Build configuration list for PBXNativeTarget "ssr-native" */;
+			buildPhases = (
+				3A4AAEBA201B5AC3002F23AF /* Sources */,
+				3A4AAEBB201B5AC3002F23AF /* Frameworks */,
+				3A4AAEBC201B5AC3002F23AF /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ssr-native";
+			productName = "ssr-native";
+			productReference = 3A4AAEBE201B5AC3002F23AF /* libssr-native.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		6205309418D4443E00887D3E /* ssr_mac_sysconf */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 620530A418D4443E00887D3E /* Build configuration list for PBXNativeTarget "ssr_mac_sysconf" */;
@@ -610,6 +798,10 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = ssrLive;
 				TargetAttributes = {
+					3A4AAEBD201B5AC3002F23AF = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
 					6205309418D4443E00887D3E = {
 						ProvisioningStyle = Manual;
 					};
@@ -648,6 +840,7 @@
 			targets = (
 				627A6DF618B47E9300493BBC /* ssrMac */,
 				6205309418D4443E00887D3E /* ssr_mac_sysconf */,
+				3A4AAEBD201B5AC3002F23AF /* ssr-native */,
 			);
 		};
 /* End PBXProject section */
@@ -817,6 +1010,31 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3A4AAEBA201B5AC3002F23AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A4AAF34201B5C89002F23AF /* ssr_cipher_names.c in Sources */,
+				3A4AAF1B201B5BAD002F23AF /* verify.c in Sources */,
+				3A4AAF2F201B5C1D002F23AF /* tunnel.c in Sources */,
+				3A4AAF30201B5C1D002F23AF /* util.c in Sources */,
+				3A4AAF15201B5BAD002F23AF /* obfs.c in Sources */,
+				3A4AAF0D201B5BAD002F23AF /* auth_chain.c in Sources */,
+				3A4AAF13201B5BAD002F23AF /* http_simple.c in Sources */,
+				3A4AAF0B201B5BAD002F23AF /* auth.c in Sources */,
+				3A4AAF17201B5BAD002F23AF /* obfsutil.c in Sources */,
+				3A4AAF11201B5BAD002F23AF /* crc32.c in Sources */,
+				3A4AAEEA201B5B74002F23AF /* cache.c in Sources */,
+				3A4AAEF5201B5B74002F23AF /* ssrbuffer.c in Sources */,
+				3A4AAF29201B5C1D002F23AF /* listener.c in Sources */,
+				3A4AAF19201B5BAD002F23AF /* tls1.2_ticket.c in Sources */,
+				3A4AAF2B201B5C1D002F23AF /* s5.c in Sources */,
+				3A4AAF0F201B5BAD002F23AF /* base64.c in Sources */,
+				3A4AAF2D201B5C1D002F23AF /* ssrcipher.c in Sources */,
+				3A4AAEF2201B5B74002F23AF /* encrypt.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6205309118D4443E00887D3E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -908,6 +1126,68 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3A4AAEBF201B5AC4002F23AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					MODULE_LOCAL,
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				HEADER_SEARCH_PATHS = /usr/local/include/;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		3A4AAEC0201B5AC4002F23AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					MODULE_LOCAL,
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				HEADER_SEARCH_PATHS = /usr/local/include/;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		6205309E18D4443E00887D3E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1142,6 +1422,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3A4AAED2201B5AC4002F23AF /* Build configuration list for PBXNativeTarget "ssr-native" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A4AAEBF201B5AC4002F23AF /* Debug */,
+				3A4AAEC0201B5AC4002F23AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		620530A418D4443E00887D3E /* Build configuration list for PBXNativeTarget "ssr_mac_sysconf" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
