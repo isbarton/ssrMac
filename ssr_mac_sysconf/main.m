@@ -1,6 +1,6 @@
 //
 //  main.m
-//  shadowsocks_sysconf
+//  ssr_mac_sysconf
 //
 //  Created by clowwindy on 14-3-15.
 //  Copyright (c) 2014年 clowwindy. All rights reserved.
@@ -14,7 +14,7 @@
 int main(int argc, const char * argv[])
 {
     if (argc != 2) {
-        printf("usage: shadowsocks_sysconf off/auto/global\n");
+        printf("usage: ssr_mac_sysconf off/auto/global\n");
         return 1;
     }
     @autoreleasepool {
@@ -22,7 +22,7 @@ int main(int argc, const char * argv[])
         
         NSSet *support_args = [NSSet setWithObjects:@"off", @"auto", @"global", @"-v", nil];
         if (![support_args containsObject:mode]) {
-            printf("usage: shadowsocks_sysconf off/auto/global\n");
+            printf("usage: ssr_mac_sysconf off/auto/global\n");
             return 1;
         }
         

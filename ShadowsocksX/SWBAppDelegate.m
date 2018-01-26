@@ -19,7 +19,7 @@
 
 #define kShadowsocksIsRunningKey @"ShadowsocksIsRunning"
 #define kShadowsocksRunningModeKey @"ShadowsocksMode"
-#define kShadowsocksHelper @"/Library/Application Support/ShadowsocksX/shadowsocks_sysconf"
+#define kShadowsocksHelper @"/Library/Application Support/ShadowsocksX/ssr_mac_sysconf"
 #define kSysconfVersion @"1.0.0"
 
 @interface SWBAppDelegate () <SWBConfigWindowControllerDelegate>

@@ -21,7 +21,7 @@
 		6205309618D4443E00887D3E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 621571AA16CF6BCB003D96B4 /* Foundation.framework */; };
 		6205309918D4443E00887D3E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6205309818D4443E00887D3E /* main.m */; };
 		620530A518D4444E00887D3E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629AC93F18B49C33001D2771 /* SystemConfiguration.framework */; };
-		620530BA18D44A2700887D3E /* shadowsocks_sysconf in Resources */ = {isa = PBXBuildFile; fileRef = 6205309518D4443E00887D3E /* shadowsocks_sysconf */; };
+		620530BA18D44A2700887D3E /* ssr_mac_sysconf in Resources */ = {isa = PBXBuildFile; fileRef = 6205309518D4443E00887D3E /* ssr_mac_sysconf */; };
 		620530BE18D44FB600887D3E /* install_helper.sh in Resources */ = {isa = PBXBuildFile; fileRef = 620530BD18D44FB600887D3E /* install_helper.sh */; };
 		622BE4E618B7307200F22683 /* menu_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 622BE4E418B7307200F22683 /* menu_icon@2x.png */; };
 		622BE4E718B7307200F22683 /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 622BE4E518B7307200F22683 /* menu_icon.png */; };
@@ -237,9 +237,9 @@
 		3AD601372018D47700403182 /* GCDWebServer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GCDWebServer.xcodeproj; path = GCDWebServer/GCDWebServer.xcodeproj; sourceTree = SOURCE_ROOT; };
 		3AD601502018D50D00403182 /* AFNetworking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AFNetworking.xcodeproj; path = AFNetworking/AFNetworking.xcodeproj; sourceTree = SOURCE_ROOT; };
 		3AD6016E2018D7C900403182 /* GZIP.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GZIP.xcodeproj; path = GZIP/GZIP.xcodeproj; sourceTree = SOURCE_ROOT; };
-		6205309518D4443E00887D3E /* shadowsocks_sysconf */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = shadowsocks_sysconf; sourceTree = BUILT_PRODUCTS_DIR; };
+		6205309518D4443E00887D3E /* ssr_mac_sysconf */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ssr_mac_sysconf; sourceTree = BUILT_PRODUCTS_DIR; };
 		6205309818D4443E00887D3E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6205309B18D4443E00887D3E /* shadowsocks_sysconf-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "shadowsocks_sysconf-Prefix.pch"; sourceTree = "<group>"; };
+		6205309B18D4443E00887D3E /* ssr_mac_sysconf-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ssr_mac_sysconf-Prefix.pch"; sourceTree = "<group>"; };
 		620530BD18D44FB600887D3E /* install_helper.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = install_helper.sh; sourceTree = "<group>"; };
 		621571A816CF6BCB003D96B4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		621571AA16CF6BCB003D96B4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -400,19 +400,19 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6205309718D4443E00887D3E /* shadowsocks_sysconf */ = {
+		6205309718D4443E00887D3E /* ssr_mac_sysconf */ = {
 			isa = PBXGroup;
 			children = (
 				6205309818D4443E00887D3E /* main.m */,
 				6205309A18D4443E00887D3E /* Supporting Files */,
 			);
-			path = shadowsocks_sysconf;
+			path = ssr_mac_sysconf;
 			sourceTree = "<group>";
 		};
 		6205309A18D4443E00887D3E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6205309B18D4443E00887D3E /* shadowsocks_sysconf-Prefix.pch */,
+				6205309B18D4443E00887D3E /* ssr_mac_sysconf-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -422,7 +422,7 @@
 			children = (
 				621571AE16CF6BCB003D96B4 /* ShadowWeb */,
 				627A6DFE18B47E9300493BBC /* ShadowsocksX */,
-				6205309718D4443E00887D3E /* shadowsocks_sysconf */,
+				6205309718D4443E00887D3E /* ssr_mac_sysconf */,
 				621571A716CF6BCB003D96B4 /* Frameworks */,
 				621571A616CF6BCB003D96B4 /* Products */,
 				EB1891FD08E70E9E9DC84AFD /* about.txt */,
@@ -433,7 +433,7 @@
 			isa = PBXGroup;
 			children = (
 				627A6DF718B47E9300493BBC /* ShadowsocksX.app */,
-				6205309518D4443E00887D3E /* shadowsocks_sysconf */,
+				6205309518D4443E00887D3E /* ssr_mac_sysconf */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -564,9 +564,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6205309418D4443E00887D3E /* shadowsocks_sysconf */ = {
+		6205309418D4443E00887D3E /* ssr_mac_sysconf */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 620530A418D4443E00887D3E /* Build configuration list for PBXNativeTarget "shadowsocks_sysconf" */;
+			buildConfigurationList = 620530A418D4443E00887D3E /* Build configuration list for PBXNativeTarget "ssr_mac_sysconf" */;
 			buildPhases = (
 				6205309118D4443E00887D3E /* Sources */,
 				6205309218D4443E00887D3E /* Frameworks */,
@@ -575,9 +575,9 @@
 			);
 			dependencies = (
 			);
-			name = shadowsocks_sysconf;
+			name = ssr_mac_sysconf;
 			productName = shadowsocks_sysconf;
-			productReference = 6205309518D4443E00887D3E /* shadowsocks_sysconf */;
+			productReference = 6205309518D4443E00887D3E /* ssr_mac_sysconf */;
 			productType = "com.apple.product-type.tool";
 		};
 		627A6DF618B47E9300493BBC /* ShadowsocksX */ = {
@@ -648,7 +648,7 @@
 			projectRoot = "";
 			targets = (
 				627A6DF618B47E9300493BBC /* ShadowsocksX */,
-				6205309418D4443E00887D3E /* shadowsocks_sysconf */,
+				6205309418D4443E00887D3E /* ssr_mac_sysconf */,
 			);
 		};
 /* End PBXProject section */
@@ -794,7 +794,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				620530BA18D44A2700887D3E /* shadowsocks_sysconf in Resources */,
+				620530BA18D44A2700887D3E /* ssr_mac_sysconf in Resources */,
 				62E27E6418C1F1E30086033D /* LICENSE in Resources */,
 				6232047718C08C6C001A30B9 /* Localizable.strings in Resources */,
 				625E5BBA19EA350F007A5124 /* QRCodeWindow.xib in Resources */,
@@ -867,7 +867,7 @@
 		};
 		620530BC18D44A4000887D3E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6205309418D4443E00887D3E /* shadowsocks_sysconf */;
+			target = 6205309418D4443E00887D3E /* ssr_mac_sysconf */;
 			targetProxy = 620530BB18D44A4000887D3E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -930,7 +930,7 @@
 				DEVELOPMENT_TEAM = "";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "shadowsocks_sysconf/shadowsocks_sysconf-Prefix.pch";
+				GCC_PREFIX_HEADER = "ssr_mac_sysconf/ssr_mac_sysconf-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -962,7 +962,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "shadowsocks_sysconf/shadowsocks_sysconf-Prefix.pch";
+				GCC_PREFIX_HEADER = "ssr_mac_sysconf/ssr_mac_sysconf-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1152,7 +1152,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		620530A418D4443E00887D3E /* Build configuration list for PBXNativeTarget "shadowsocks_sysconf" */ = {
+		620530A418D4443E00887D3E /* Build configuration list for PBXNativeTarget "ssr_mac_sysconf" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6205309E18D4443E00887D3E /* Debug */,

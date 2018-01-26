@@ -7,8 +7,8 @@
 
 cd `dirname "${BASH_SOURCE[0]}"`
 sudo mkdir -p "/Library/Application Support/ShadowsocksX/"
-sudo cp shadowsocks_sysconf "/Library/Application Support/ShadowsocksX/"
-sudo chown root:admin "/Library/Application Support/ShadowsocksX/shadowsocks_sysconf"
-sudo chmod +s "/Library/Application Support/ShadowsocksX/shadowsocks_sysconf"
+sudo cp ssr_mac_sysconf "/Library/Application Support/ShadowsocksX/"
+sudo chown root:admin "/Library/Application Support/ShadowsocksX/ssr_mac_sysconf"
+sudo chmod +s "/Library/Application Support/ShadowsocksX/ssr_mac_sysconf"
 
 echo done
