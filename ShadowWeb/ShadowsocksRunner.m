@@ -5,7 +5,65 @@
 
 #import "ShadowsocksRunner.h"
 #import "local.h"
+#include "ssrcipher.h"
+#include "defs.h"
+#include <uv.h>
 
+struct server_config * build_config_object(void) {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *method = [defaults objectForKey:kShadowsocksEncryptionKey];
+    if (method.length == 0) {
+        method = @"aes-256-cfb";
+    }
+    const char *host = [[defaults stringForKey:kShadowsocksIPKey] cStringUsingEncoding:NSUTF8StringEncoding];
+    const char *port = [[defaults stringForKey:kShadowsocksPortKey] cStringUsingEncoding:NSUTF8StringEncoding];
+    const char *password = [[defaults stringForKey:kShadowsocksPasswordKey] cStringUsingEncoding:NSUTF8StringEncoding];
+
+    const char *protocol = [[defaults stringForKey:kShadowsocksProtocolKey] cStringUsingEncoding:NSUTF8StringEncoding];
+    if (protocol && strcmp(protocol, "verify_sha1") == 0) {
+        // LOGI("The verify_sha1 protocol is deprecate! Fallback to origin protocol.");
+        protocol = NULL;
+    }
+    const char *protocolParam = [[defaults stringForKey:kShadowsocksProtocolParamKey] cStringUsingEncoding:NSUTF8StringEncoding];
+    const char *obfs = [[defaults stringForKey:kShadowsocksObfsKey] cStringUsingEncoding:NSUTF8StringEncoding];
+    const char *obfsParam = [[defaults stringForKey:kShadowsocksObfsParamKey] cStringUsingEncoding:NSUTF8StringEncoding];
+
+    struct server_config *config = config_create();
+
+    if (port) {
+        config->remote_port = atoi(port);
+    }
+    config->listen_port = DEFAULT_BIND_PORT;
+    string_safe_assign(&config->method, method.UTF8String);
+    string_safe_assign(&config->remote_host, host);
+    string_safe_assign(&config->password, password);
+    string_safe_assign(&config->protocol, protocol);
+    string_safe_assign(&config->protocol_param, protocolParam);
+    string_safe_assign(&config->obfs, obfs);
+    string_safe_assign(&config->obfs_param, obfsParam);
+    
+    return config;
+}
+
+void ssr_main(void) {
+    struct server_config *config = NULL;
+    do {
+        config = build_config_object();
+        if (config == NULL) {
+            break;
+        }
+        
+        if (config->method == NULL || config->password==NULL || config->remote_host==NULL) {
+            break;
+        }
+        
+        uv_loop_t *loop = uv_loop_new(); // uv_default_loop();
+        listener_run(config, loop);
+        //uv_loop_delete(loop);
+    } while(0);
+    
+    config_release(config);
+}
 
 @implementation ShadowsocksRunner {
 

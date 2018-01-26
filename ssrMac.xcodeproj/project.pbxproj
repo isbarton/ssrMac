@@ -45,6 +45,9 @@
 		3A4AAF31201B5C1D002F23AF /* util.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4AAF27201B5C1D002F23AF /* util.h */; };
 		3A4AAF34201B5C89002F23AF /* ssr_cipher_names.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AAF32201B5C89002F23AF /* ssr_cipher_names.c */; };
 		3A4AAF35201B5C89002F23AF /* ssr_cipher_names.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4AAF33201B5C89002F23AF /* ssr_cipher_names.h */; };
+		3A4AAF38201B60B9002F23AF /* libssr-native.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4AAEBE201B5AC3002F23AF /* libssr-native.a */; };
+		3A4AAF3B201B6441002F23AF /* ssrutils.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AAF39201B6441002F23AF /* ssrutils.c */; };
+		3A4AAF3C201B6441002F23AF /* ssrutils.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4AAF3A201B6441002F23AF /* ssrutils.h */; };
 		3ACA8C8A20199CB500839E41 /* libsodium.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ACA8C8920199CB500839E41 /* libsodium.a */; };
 		3ACA8C8C20199CBA00839E41 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ACA8C8B20199CBA00839E41 /* libcrypto.a */; };
 		3ACA8CCB2019C17800839E41 /* ShadowsocksRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACA8CC92019C17800839E41 /* ShadowsocksRunner.m */; };
@@ -92,6 +95,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3A4AAF36201B60AE002F23AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6215719D16CF6BCA003D96B4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3A4AAEBD201B5AC3002F23AF;
+			remoteInfo = "ssr-native";
+		};
 		3AD601422018D47800403182 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3AD601372018D47700403182 /* GCDWebServer.xcodeproj */;
@@ -296,6 +306,8 @@
 		3A4AAF27201B5C1D002F23AF /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
 		3A4AAF32201B5C89002F23AF /* ssr_cipher_names.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ssr_cipher_names.c; path = "shadowsocksr-native/src/ssr_cipher_names.c"; sourceTree = "<group>"; };
 		3A4AAF33201B5C89002F23AF /* ssr_cipher_names.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ssr_cipher_names.h; path = "shadowsocksr-native/src/ssr_cipher_names.h"; sourceTree = "<group>"; };
+		3A4AAF39201B6441002F23AF /* ssrutils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ssrutils.c; path = "shadowsocksr-native/src/ssrutils.c"; sourceTree = "<group>"; };
+		3A4AAF3A201B6441002F23AF /* ssrutils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ssrutils.h; path = "shadowsocksr-native/src/ssrutils.h"; sourceTree = "<group>"; };
 		3ACA8C8920199CB500839E41 /* libsodium.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsodium.a; path = /usr/local/lib/libsodium.a; sourceTree = "<group>"; };
 		3ACA8C8B20199CBA00839E41 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = /usr/local/lib/libcrypto.a; sourceTree = "<group>"; };
 		3ACA8CC92019C17800839E41 /* ShadowsocksRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShadowsocksRunner.m; path = ShadowWeb/ShadowsocksRunner.m; sourceTree = SOURCE_ROOT; };
@@ -407,6 +419,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A4AAF38201B60B9002F23AF /* libssr-native.a in Frameworks */,
 				3AD601822018D7F200403182 /* GZIP.framework in Frameworks */,
 				3AD6016C2018D56F00403182 /* AFNetworking.framework in Frameworks */,
 				3AD6016D2018D56F00403182 /* GCDWebServers.framework in Frameworks */,
@@ -436,6 +449,8 @@
 				3A4AAED5201B5B72002F23AF /* encrypt.h */,
 				3A4AAEE3201B5B74002F23AF /* ssrbuffer.c */,
 				3A4AAEDF201B5B74002F23AF /* ssrbuffer.h */,
+				3A4AAF39201B6441002F23AF /* ssrutils.c */,
+				3A4AAF3A201B6441002F23AF /* ssrutils.h */,
 				3A4AAF32201B5C89002F23AF /* ssr_cipher_names.c */,
 				3A4AAF33201B5C89002F23AF /* ssr_cipher_names.h */,
 			);
@@ -722,6 +737,7 @@
 				3A4AAEF1201B5B74002F23AF /* ssrbuffer.h in Headers */,
 				3A4AAF16201B5BAD002F23AF /* obfs.h in Headers */,
 				3A4AAEF4201B5B74002F23AF /* cache.h in Headers */,
+				3A4AAF3C201B6441002F23AF /* ssrutils.h in Headers */,
 				3A4AAEE7201B5B74002F23AF /* encrypt.h in Headers */,
 				3A4AAF1A201B5BAD002F23AF /* tls1.2_ticket.h in Headers */,
 				3A4AAF28201B5C1D002F23AF /* defs.h in Headers */,
@@ -778,6 +794,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3A4AAF37201B60AE002F23AF /* PBXTargetDependency */,
 				3AD601812018D7E100403182 /* PBXTargetDependency */,
 				3AD601692018D54500403182 /* PBXTargetDependency */,
 				3AD6016B2018D54500403182 /* PBXTargetDependency */,
@@ -1026,6 +1043,7 @@
 				3A4AAF11201B5BAD002F23AF /* crc32.c in Sources */,
 				3A4AAEEA201B5B74002F23AF /* cache.c in Sources */,
 				3A4AAEF5201B5B74002F23AF /* ssrbuffer.c in Sources */,
+				3A4AAF3B201B6441002F23AF /* ssrutils.c in Sources */,
 				3A4AAF29201B5C1D002F23AF /* listener.c in Sources */,
 				3A4AAF19201B5BAD002F23AF /* tls1.2_ticket.c in Sources */,
 				3A4AAF2B201B5C1D002F23AF /* s5.c in Sources */,
@@ -1067,6 +1085,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3A4AAF37201B60AE002F23AF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3A4AAEBD201B5AC3002F23AF /* ssr-native */;
+			targetProxy = 3A4AAF36201B60AE002F23AF /* PBXContainerItemProxy */;
+		};
 		3AD601692018D54500403182 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "AFNetworking macOS";

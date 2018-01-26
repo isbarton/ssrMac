@@ -9,6 +9,7 @@
 #import "ShadowsocksRunner.h"
 #import "ProfileManager.h"
 #import "encrypt.h"
+#include "ssr_cipher_names.h"
 
 
 @implementation SWBConfigWindowController {
@@ -21,8 +22,12 @@
 }
 
 - (void)addMethods {
-    for (int i = 0; i < kShadowsocksMethods; i++) {
-        const char* method_name = shadowsocks_encryption_names[i];
+    for (ss_cipher_type i = ss_cipher_none; i < ss_cipher_max; ++i) {
+        const char* method_name = ss_cipher_name_from_index(i);
+        if (method_name == NULL) {
+            continue;
+        }
+        // NSString *methodName = [NSString stringWithUTF8String:method_name];
         NSString *methodName = [[NSString alloc] initWithBytes:method_name length:strlen(method_name) encoding:NSUTF8StringEncoding];
         [_methodBox addItemWithObjectValue:methodName];
     }
