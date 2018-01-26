@@ -13,7 +13,7 @@
 
 
 @implementation SWBConfigWindowController {
-    Configuration *configuration;
+    Configuration *_configuration;
 }
 
 
@@ -34,13 +34,13 @@
 }
 
 - (void)loadSettings {
-    configuration = [ProfileManager configuration];
+    _configuration = [ProfileManager configuration];
     [self.tableView reloadData];
     [self loadCurrentProfile];
 }
 
 - (void)saveSettings {
-    [ProfileManager saveConfiguration:configuration];
+    [ProfileManager saveConfiguration:_configuration];
 //    if (_publicMatrix.selectedColumn == 0) {
 //        [ShadowsocksRunner setUsingPublicServer:YES];
 //    } else {
@@ -62,7 +62,7 @@
         // always allow no selection to selection
         return YES;
     }
-    if (row >= 0 && row < configuration.profiles.count) {
+    if (row >= 0 && row < _configuration.profiles.count) {
         if ([self validateCurrentProfile]) {
             [self saveCurrentProfile];
         } else {
@@ -80,7 +80,7 @@
 }
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    Profile *profile = configuration.profiles[row];
+    Profile *profile = _configuration.profiles[row];
     if ([profile.server isEqualToString:@""]) {
         return @"New Server";
     }
@@ -97,7 +97,7 @@
 }
 
 - (IBAction)add:(id)sender {
-    if (configuration.profiles.count != 0 && ![self saveCurrentProfile]) {
+    if (_configuration.profiles.count != 0 && ![self saveCurrentProfile]) {
         [self shakeWindow];
         return;
     }
@@ -106,32 +106,32 @@
     profile.serverPort = 443;
     profile.method = @"aes-256-cfb";
     profile.password = @"";
-    [((NSMutableArray *) configuration.profiles) addObject:profile];
+    [((NSMutableArray *) _configuration.profiles) addObject:profile];
     [self.tableView reloadData];
-    [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:(configuration.profiles.count - 1)] byExtendingSelection:NO];
+    [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:(_configuration.profiles.count - 1)] byExtendingSelection:NO];
     [self updateSettingsBoxVisible:self];
     [self loadCurrentProfile];
 }
 
 - (IBAction)remove:(id)sender {
     NSInteger selection = self.tableView.selectedRow;
-    if (selection >= 0 && selection < configuration.profiles.count) {
-        [((NSMutableArray *) configuration.profiles) removeObjectAtIndex:selection];
+    if (selection >= 0 && selection < _configuration.profiles.count) {
+        [((NSMutableArray *) _configuration.profiles) removeObjectAtIndex:selection];
         [self.tableView reloadData];
         [self updateSettingsBoxVisible:self];
-        if (configuration.profiles.count > 0) {
-            [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:(configuration.profiles.count - 1)] byExtendingSelection:NO];
+        if (_configuration.profiles.count > 0) {
+            [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:(_configuration.profiles.count - 1)] byExtendingSelection:NO];
         }
         [self loadCurrentProfile];
-        if (configuration.current > selection) {
+        if (_configuration.current > selection) {
             // select the original profile
-            configuration.current = configuration.current - 1;
+            _configuration.current = _configuration.current - 1;
         }
     }
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-    return configuration.profiles.count;
+    return _configuration.profiles.count;
 }
 
 - (void)windowDidLoad {
@@ -144,7 +144,7 @@
 }
 
 - (IBAction)updateSettingsBoxVisible:(id)sender {
-    if (configuration.profiles.count == 0) {
+    if (_configuration.profiles.count == 0) {
         [_settingsBox setHidden:YES];
         [_placeholderLabel setHidden:NO];
     } else {
@@ -154,9 +154,9 @@
 }
 
 - (void)loadCurrentProfile {
-    if (configuration.profiles.count > 0) {
-        if (self.tableView.selectedRow >= 0 && self.tableView.selectedRow < configuration.profiles.count) {
-            Profile *profile = configuration.profiles[self.tableView.selectedRow];
+    if (_configuration.profiles.count > 0) {
+        if (self.tableView.selectedRow >= 0 && self.tableView.selectedRow < _configuration.profiles.count) {
+            Profile *profile = _configuration.profiles[self.tableView.selectedRow];
             [_serverField setStringValue:profile.server];
             [_portField setStringValue:[NSString stringWithFormat:@"%ld", (long)profile.serverPort]];
             [_methodBox setStringValue:profile.method];
@@ -174,8 +174,8 @@
     if (![self validateCurrentProfile]) {
         return NO;
     }
-    if (self.tableView.selectedRow >= 0 && self.tableView.selectedRow < configuration.profiles.count) {
-        Profile *profile = configuration.profiles[self.tableView.selectedRow];
+    if (self.tableView.selectedRow >= 0 && self.tableView.selectedRow < _configuration.profiles.count) {
+        Profile *profile = _configuration.profiles[self.tableView.selectedRow];
         profile.server = [_serverField stringValue];
         profile.serverPort = [_portField integerValue];
         profile.method = [_methodBox stringValue];
