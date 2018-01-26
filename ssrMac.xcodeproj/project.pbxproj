@@ -263,7 +263,7 @@
 		6274846F18B1FD6500A9CDF0 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		6274847118B1FD6F00A9CDF0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6274847318B1FD7900A9CDF0 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
-		627A6DF718B47E9300493BBC /* ShadowsocksX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShadowsocksX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		627A6DF718B47E9300493BBC /* ssrMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ssrMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		627A6DF818B47E9300493BBC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		627A6DFB18B47E9300493BBC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		627A6DFC18B47E9300493BBC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -421,7 +421,7 @@
 			isa = PBXGroup;
 			children = (
 				621571AE16CF6BCB003D96B4 /* ShadowWeb */,
-				627A6DFE18B47E9300493BBC /* ShadowsocksX */,
+				627A6DFE18B47E9300493BBC /* ssrMac */,
 				6205309718D4443E00887D3E /* ssr_mac_sysconf */,
 				621571A716CF6BCB003D96B4 /* Frameworks */,
 				621571A616CF6BCB003D96B4 /* Products */,
@@ -432,7 +432,7 @@
 		621571A616CF6BCB003D96B4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				627A6DF718B47E9300493BBC /* ShadowsocksX.app */,
+				627A6DF718B47E9300493BBC /* ssrMac.app */,
 				6205309518D4443E00887D3E /* ssr_mac_sysconf */,
 			);
 			name = Products;
@@ -505,7 +505,7 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		627A6DFE18B47E9300493BBC /* ShadowsocksX */ = {
+		627A6DFE18B47E9300493BBC /* ssrMac */ = {
 			isa = PBXGroup;
 			children = (
 				3AD6016E2018D7C900403182 /* GZIP.xcodeproj */,
@@ -533,7 +533,7 @@
 				3A40B2CF2019E0BC00F33F80 /* qrCodeOnScreen.h */,
 				3A40B2D02019E0BC00F33F80 /* qrCodeOnScreen.m */,
 			);
-			path = ShadowsocksX;
+			path = ssrMac;
 			sourceTree = "<group>";
 		};
 		627A6DFF18B47E9300493BBC /* Supporting Files */ = {
@@ -580,9 +580,9 @@
 			productReference = 6205309518D4443E00887D3E /* ssr_mac_sysconf */;
 			productType = "com.apple.product-type.tool";
 		};
-		627A6DF618B47E9300493BBC /* ShadowsocksX */ = {
+		627A6DF618B47E9300493BBC /* ssrMac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 627A6E2C18B47E9300493BBC /* Build configuration list for PBXNativeTarget "ShadowsocksX" */;
+			buildConfigurationList = 627A6E2C18B47E9300493BBC /* Build configuration list for PBXNativeTarget "ssrMac" */;
 			buildPhases = (
 				627A6DF318B47E9300493BBC /* Sources */,
 				627A6DF418B47E9300493BBC /* Frameworks */,
@@ -596,9 +596,9 @@
 				3AD6016B2018D54500403182 /* PBXTargetDependency */,
 				620530BC18D44A4000887D3E /* PBXTargetDependency */,
 			);
-			name = ShadowsocksX;
+			name = ssrMac;
 			productName = ShadowsocksX;
-			productReference = 627A6DF718B47E9300493BBC /* ShadowsocksX.app */;
+			productReference = 627A6DF718B47E9300493BBC /* ssrMac.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -609,7 +609,7 @@
 			attributes = {
 				CLASSPREFIX = SWB;
 				LastUpgradeCheck = 0920;
-				ORGANIZATIONNAME = clowwindy;
+				ORGANIZATIONNAME = ssrLive;
 				TargetAttributes = {
 					6205309418D4443E00887D3E = {
 						ProvisioningStyle = Manual;
@@ -619,7 +619,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 621571A016CF6BCA003D96B4 /* Build configuration list for PBXProject "shadowsocks" */;
+			buildConfigurationList = 621571A016CF6BCA003D96B4 /* Build configuration list for PBXProject "ssrMac" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -647,7 +647,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				627A6DF618B47E9300493BBC /* ShadowsocksX */,
+				627A6DF618B47E9300493BBC /* ssrMac */,
 				6205309418D4443E00887D3E /* ssr_mac_sysconf */,
 			);
 		};
@@ -1092,7 +1092,7 @@
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ShadowsocksX/ShadowsocksX-Prefix.pch";
+				GCC_PREFIX_HEADER = "ssrMac/ssrMac-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1102,7 +1102,7 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				HEADER_SEARCH_PATHS = /usr/local/include;
-				INFOPLIST_FILE = "ShadowsocksX/ShadowsocksX-Info.plist";
+				INFOPLIST_FILE = "ssrMac/ssrMac-Info.plist";
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ssrlive.macClient;
@@ -1132,13 +1132,13 @@
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ShadowsocksX/ShadowsocksX-Prefix.pch";
+				GCC_PREFIX_HEADER = "ssrMac/ssrMac-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				HEADER_SEARCH_PATHS = /usr/local/include;
-				INFOPLIST_FILE = "ShadowsocksX/ShadowsocksX-Info.plist";
+				INFOPLIST_FILE = "ssrMac/ssrMac-Info.plist";
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ssrlive.macClient;
@@ -1161,7 +1161,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		621571A016CF6BCA003D96B4 /* Build configuration list for PBXProject "shadowsocks" */ = {
+		621571A016CF6BCA003D96B4 /* Build configuration list for PBXProject "ssrMac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				621571C916CF6BCB003D96B4 /* Debug */,
@@ -1170,7 +1170,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		627A6E2C18B47E9300493BBC /* Build configuration list for PBXNativeTarget "ShadowsocksX" */ = {
+		627A6E2C18B47E9300493BBC /* Build configuration list for PBXNativeTarget "ssrMac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				627A6E2418B47E9300493BBC /* Debug */,

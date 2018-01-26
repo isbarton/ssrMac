@@ -1,6 +1,6 @@
 //
 //  qrCodeOnScreen.h
-//  ShadowsocksX
+//  ssrMac
 //
 //  Created by ssrlive on 1/25/18.
 //  Copyright © 2018 ssrlive. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  SWBAppDelegate.m
-//  ShadowsocksX
+//  ssrMac
 //
 //  Created by clowwindy on 14-2-19.
 //  Copyright (c) 2014年 clowwindy. All rights reserved.
@@ -19,7 +19,7 @@
 
 #define kShadowsocksIsRunningKey @"ShadowsocksIsRunning"
 #define kShadowsocksRunningModeKey @"ShadowsocksMode"
-#define kShadowsocksHelper @"/Library/Application Support/ShadowsocksX/ssr_mac_sysconf"
+#define kShadowsocksHelper @"/Library/Application Support/ssrMac/ssr_mac_sysconf"
 #define kSysconfVersion @"1.0.0"
 
 @interface SWBAppDelegate () <SWBConfigWindowControllerDelegate>
@@ -119,7 +119,7 @@ static SWBAppDelegate *appDelegate;
 
     [self updateMenu];
 
-    configPath = [NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".ShadowsocksX"];
+    configPath = [NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".ssrMac"];
     PACPath = [NSString stringWithFormat:@"%@/%@", configPath, @"gfwlist.js"];
     userRulePath = [NSString stringWithFormat:@"%@/%@", configPath, @"user-rule.txt"];
     [self monitorPAC:configPath];
