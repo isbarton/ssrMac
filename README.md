@@ -14,6 +14,7 @@ Build from source code
 **Dependencies**:
  * **Sodium** [Installation](https://download.libsodium.org/doc/installation/index.html)
  * **OpenSSL** [Installation](https://github.com/openssl/openssl/blob/master/INSTALL)
+ * **libuv** [Installation](https://github.com/libuv/libuv#build-instructions)
 
 Then pull **source code** and submodules
 ```bash
