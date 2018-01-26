@@ -12,9 +12,11 @@
 }
 
 + (BOOL)settingsAreNotComplete {
-    if ((![ShadowsocksRunner isUsingPublicServer]) && ([[NSUserDefaults standardUserDefaults] stringForKey:kShadowsocksIPKey] == nil ||
-            [[NSUserDefaults standardUserDefaults] stringForKey:kShadowsocksPortKey] == nil ||
-            [[NSUserDefaults standardUserDefaults] stringForKey:kShadowsocksPasswordKey] == nil)) {
+    if ((![ShadowsocksRunner isUsingPublicServer]) &&
+        ([[NSUserDefaults standardUserDefaults] stringForKey:kShadowsocksIPKey] == nil ||
+         [[NSUserDefaults standardUserDefaults] stringForKey:kShadowsocksPortKey] == nil ||
+         [[NSUserDefaults standardUserDefaults] stringForKey:kShadowsocksPasswordKey] == nil))
+    {
         return YES;
     } else {
         return NO;
