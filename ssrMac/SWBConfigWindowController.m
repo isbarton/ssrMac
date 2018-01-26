@@ -22,14 +22,32 @@
 }
 
 - (void)addMethods {
-    for (ss_cipher_type i = ss_cipher_none; i < ss_cipher_max; ++i) {
+    for (enum ss_cipher_type i = ss_cipher_none; i < ss_cipher_max; ++i) {
         const char* method_name = ss_cipher_name_from_index(i);
         if (method_name == NULL) {
             continue;
         }
-        // NSString *methodName = [NSString stringWithUTF8String:method_name];
-        NSString *methodName = [[NSString alloc] initWithBytes:method_name length:strlen(method_name) encoding:NSUTF8StringEncoding];
-        [_methodBox addItemWithObjectValue:methodName];
+        [_methodBox addItemWithObjectValue:[NSString stringWithUTF8String:method_name]];
+    }
+}
+
+- (void) fillProtocols {
+    for(enum ssr_protocol i=ssr_protocol_origin; i<ssr_protocol_max; ++i) {
+        const char *protocol = ssr_protocol_name_from_index(i);
+        if (protocol == NULL) {
+            continue;
+        }
+        [_protocolBox addItemWithObjectValue:[NSString stringWithUTF8String:protocol]];
+    }
+}
+
+- (void) fileObfuscators {
+    for (enum ssr_obfs i=ssr_obfs_plain; i<ssr_obfs_max; ++i) {
+        const char *obfs = ssr_obfs_name_from_index(i);
+        if (obfs == NULL) {
+            continue;
+        }
+        [_obfsBox addItemWithObjectValue:[NSString stringWithUTF8String:obfs]];
     }
 }
 
@@ -41,20 +59,6 @@
 
 - (void)saveSettings {
     [ProfileManager saveConfiguration:_configuration];
-//    if (_publicMatrix.selectedColumn == 0) {
-//        [ShadowsocksRunner setUsingPublicServer:YES];
-//    } else {
-//        [ShadowsocksRunner setUsingPublicServer:NO];
-//        [ShadowsocksRunner saveConfigForKey:kShadowsocksIPKey value:[_serverField stringValue]];
-//        [ShadowsocksRunner saveConfigForKey:kShadowsocksPortKey value:[_portField stringValue]];
-//        [ShadowsocksRunner saveConfigForKey:kShadowsocksPasswordKey value:[_passwordField stringValue]];
-//        [ShadowsocksRunner saveConfigForKey:kShadowsocksEncryptionKey value:[_methodBox stringValue]];
-//    }
-//    if (self.delegate != nil) {
-//        if ([self.delegate respondsToSelector:@selector(configurationDidChange)]) {
-//            [self.delegate configurationDidChange];
-//        }
-//    }
 }
 
 - (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row {
@@ -104,7 +108,7 @@
     Profile *profile = [[Profile alloc] init];
     profile.server = @"";
     profile.serverPort = 443;
-    profile.method = @"aes-256-cfb";
+    profile.method = [NSString stringWithUTF8String:ss_cipher_name_from_index(ss_cipher_aes_256_cfb)];
     profile.password = @"";
     [((NSMutableArray *) _configuration.profiles) addObject:profile];
     [self.tableView reloadData];
@@ -139,6 +143,8 @@
     self.tableView.dataSource = self;
     [super windowDidLoad];
     [self addMethods];
+    [self fillProtocols];
+    [self fileObfuscators];
     [self loadSettings];
     [self updateSettingsBoxVisible:self];
 }
