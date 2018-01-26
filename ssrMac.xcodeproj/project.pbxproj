@@ -268,10 +268,10 @@
 		627A6DFB18B47E9300493BBC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		627A6DFC18B47E9300493BBC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		627A6DFD18B47E9300493BBC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		627A6E0018B47E9300493BBC /* ShadowsocksX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShadowsocksX-Info.plist"; sourceTree = "<group>"; };
+		627A6E0018B47E9300493BBC /* ssrMac-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ssrMac-Info.plist"; sourceTree = "<group>"; };
 		627A6E0218B47E9300493BBC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		627A6E0418B47E9300493BBC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		627A6E0618B47E9300493BBC /* ShadowsocksX-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShadowsocksX-Prefix.pch"; sourceTree = "<group>"; };
+		627A6E0618B47E9300493BBC /* ssrMac-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ssrMac-Prefix.pch"; sourceTree = "<group>"; };
 		627A6E0818B47E9300493BBC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		627A6E0A18B47E9300493BBC /* SWBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWBAppDelegate.h; sourceTree = "<group>"; };
 		627A6E0B18B47E9300493BBC /* SWBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWBAppDelegate.m; sourceTree = "<group>"; };
@@ -547,10 +547,10 @@
 				6232046F18C0719D001A30B9 /* menu_icon_disabled.png */,
 				6232047018C0719D001A30B9 /* menu_icon_disabled@2x.png */,
 				629AC93218B49341001D2771 /* Application.xib */,
-				627A6E0018B47E9300493BBC /* ShadowsocksX-Info.plist */,
+				627A6E0018B47E9300493BBC /* ssrMac-Info.plist */,
 				627A6E0118B47E9300493BBC /* InfoPlist.strings */,
 				627A6E0418B47E9300493BBC /* main.m */,
-				627A6E0618B47E9300493BBC /* ShadowsocksX-Prefix.pch */,
+				627A6E0618B47E9300493BBC /* ssrMac-Prefix.pch */,
 				627A6E0718B47E9300493BBC /* Credits.rtf */,
 				6232047A18C08E2A001A30B9 /* ConfigWindow.xib */,
 				620530BD18D44FB600887D3E /* install_helper.sh */,
