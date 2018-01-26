@@ -57,7 +57,7 @@ static int _method;
 static int _key_len;
 static const EVP_CIPHER *_cipher;
 static unsigned char _key[EVP_MAX_KEY_LENGTH];
-unsigned char *shadowsocks_key;
+unsigned char *shadowsocks_key = _key;
 
 void init_cipher(struct encryption_ctx *ctx, const unsigned char *iv, size_t iv_len, int is_cipher);
 
