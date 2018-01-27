@@ -4,48 +4,36 @@
 //
 
 #import "ShadowsocksRunner.h"
-#import "local.h"
+#import "Profile.h"
 #include "ssrcipher.h"
 #include "defs.h"
 #include <uv.h>
 
 struct server_config * build_config_object(void) {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *method = [defaults objectForKey:kShadowsocksEncryptionKey];
-    if (method.length == 0) {
-        method = @"aes-256-cfb";
-    }
-    const char *host = [[defaults stringForKey:kShadowsocksIPKey] cStringUsingEncoding:NSUTF8StringEncoding];
-    const char *port = [[defaults stringForKey:kShadowsocksPortKey] cStringUsingEncoding:NSUTF8StringEncoding];
-    const char *password = [[defaults stringForKey:kShadowsocksPasswordKey] cStringUsingEncoding:NSUTF8StringEncoding];
-
-    const char *protocol = [[defaults stringForKey:kShadowsocksProtocolKey] cStringUsingEncoding:NSUTF8StringEncoding];
+    Profile *profile = [ShadowsocksRunner battleFrontGetProfile];
+    
+    const char *protocol = profile.protocol.UTF8String;
     if (protocol && strcmp(protocol, "verify_sha1") == 0) {
         // LOGI("The verify_sha1 protocol is deprecate! Fallback to origin protocol.");
         protocol = NULL;
     }
-    const char *protocolParam = [[defaults stringForKey:kShadowsocksProtocolParamKey] cStringUsingEncoding:NSUTF8StringEncoding];
-    const char *obfs = [[defaults stringForKey:kShadowsocksObfsKey] cStringUsingEncoding:NSUTF8StringEncoding];
-    const char *obfsParam = [[defaults stringForKey:kShadowsocksObfsParamKey] cStringUsingEncoding:NSUTF8StringEncoding];
 
     struct server_config *config = config_create();
 
-    if (port) {
-        config->remote_port = atoi(port);
-    }
     config->listen_port = DEFAULT_BIND_PORT;
-    string_safe_assign(&config->method, method.UTF8String);
-    string_safe_assign(&config->remote_host, host);
-    string_safe_assign(&config->password, password);
+    string_safe_assign(&config->method, profile.method.UTF8String);
+    string_safe_assign(&config->remote_host, profile.server.UTF8String);
+    config->remote_port = (unsigned short) profile.serverPort;
+    string_safe_assign(&config->password, profile.password.UTF8String);
     string_safe_assign(&config->protocol, protocol);
-    string_safe_assign(&config->protocol_param, protocolParam);
-    string_safe_assign(&config->obfs, obfs);
-    string_safe_assign(&config->obfs_param, obfsParam);
+    string_safe_assign(&config->protocol_param, profile.protocolParam.UTF8String);
+    string_safe_assign(&config->obfs, profile.obfs.UTF8String);
+    string_safe_assign(&config->obfs_param, profile.obfsParam.UTF8String);
     
     return config;
 }
 
-void ssr_main(void) {
+void ssr_main_loop(uv_loop_t *loop) {
     struct server_config *config = NULL;
     do {
         config = build_config_object();
@@ -57,12 +45,18 @@ void ssr_main(void) {
             break;
         }
         
-        uv_loop_t *loop = uv_loop_new(); // uv_default_loop();
+        //uv_loop_t *loop = uv_loop_new(); // uv_default_loop();
         listener_run(config, loop);
         //uv_loop_delete(loop);
     } while(0);
     
     config_release(config);
+}
+
+void ssr_stop(uv_loop_t *loop) {
+    if (loop) {
+        uv_stop(loop);
+    }
 }
 
 @implementation ShadowsocksRunner {
@@ -81,9 +75,14 @@ void ssr_main(void) {
     }
 }
 
-+ (BOOL)runProxy {
+uv_loop_t * loop = NULL;
+
++ (BOOL) runProxy {
+    if (loop == NULL) {
+        loop = uv_default_loop();
+    }
     if (![ShadowsocksRunner settingsAreNotComplete]) {
-        local_main();
+        ssr_main_loop(loop);
         return YES;
     } else {
 #ifdef DEBUG
@@ -93,28 +92,9 @@ void ssr_main(void) {
     }
 }
 
-+ (void)reloadConfig {
++ (void) reloadConfig {
     if (![ShadowsocksRunner settingsAreNotComplete]) {
-        if ([ShadowsocksRunner isUsingPublicServer]) {
-            set_config("106.186.124.182", "8911", "Shadowsocks", "aes-128-cfb");
-            memcpy(shadowsocks_key, "\x45\xd1\xd9\x9e\xbd\xf5\x8c\x85\x34\x55\xdd\x65\x46\xcd\x06\xd3", 16);
-        } else {
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            NSString *v = [defaults objectForKey:kShadowsocksEncryptionKey];
-            if (v.length == 0) {
-                v = @"aes-256-cfb";
-            }
-            const char *host = [[defaults stringForKey:kShadowsocksIPKey] cStringUsingEncoding:NSUTF8StringEncoding];
-            const char *port = [[defaults stringForKey:kShadowsocksPortKey] cStringUsingEncoding:NSUTF8StringEncoding];
-            const char *password = [[defaults stringForKey:kShadowsocksPasswordKey] cStringUsingEncoding:NSUTF8StringEncoding];
-
-            kShadowsocksProtocolKey;
-            kShadowsocksProtocolParamKey;
-            kShadowsocksObfsKey;
-            kShadowsocksObfsParamKey;
-
-            set_config(host, port, password, [v cStringUsingEncoding:NSUTF8StringEncoding]);
-        }
+        ssr_stop(loop);
     }
 }
 
@@ -152,19 +132,20 @@ void ssr_main(void) {
             errorReason = @"wrong position";
             continue;
         }
-        NSString *method = [urlString substringWithRange:NSMakeRange(0, firstColonRange.location)];
-        NSString *password = [urlString substringWithRange:NSMakeRange(firstColonRange.location + 1, lastAtRange.location - firstColonRange.location - 1)];
-        NSString *IP = [urlString substringWithRange:NSMakeRange(lastAtRange.location + 1, lastColonRange.location - lastAtRange.location - 1)];
-        NSString *port = [urlString substringWithRange:NSMakeRange(lastColonRange.location + 1, urlString.length - lastColonRange.location - 1)];
-        [ShadowsocksRunner saveConfigForKey:kShadowsocksIPKey value:IP];
-        [ShadowsocksRunner saveConfigForKey:kShadowsocksPortKey value:port];
-        [ShadowsocksRunner saveConfigForKey:kShadowsocksPasswordKey value:password];
-        [ShadowsocksRunner saveConfigForKey:kShadowsocksEncryptionKey value:method];
+        
+        Profile *profile = [[Profile alloc] init];
+        
+        profile.method = [urlString substringWithRange:NSMakeRange(0, firstColonRange.location)];
+        profile.password = [urlString substringWithRange:NSMakeRange(firstColonRange.location + 1, lastAtRange.location - firstColonRange.location - 1)];
+        profile.server = [urlString substringWithRange:NSMakeRange(lastAtRange.location + 1, lastColonRange.location - lastAtRange.location - 1)];
+        profile.serverPort = [urlString substringWithRange:NSMakeRange(lastColonRange.location + 1, urlString.length - lastColonRange.location - 1)].integerValue;
 
-        kShadowsocksProtocolKey;
-        kShadowsocksProtocolParamKey;
-        kShadowsocksObfsKey;
-        kShadowsocksObfsParamKey;
+        profile.protocol;
+        profile.protocolParam;
+        profile.obfs;
+        profile.obfsParam;
+        
+        [ShadowsocksRunner battleFrontSaveProfile:profile];
 
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kShadowsocksUsePublicServer];
         [ShadowsocksRunner reloadConfig];
@@ -179,16 +160,19 @@ void ssr_main(void) {
     if ([ShadowsocksRunner isUsingPublicServer]) {
         return nil;
     }
+    
+    Profile *profile = [ShadowsocksRunner battleFrontGetProfile];
+    
     NSString *parts = [NSString stringWithFormat:@"%@:%@@%@:%@",
-                       [ShadowsocksRunner configForKey:kShadowsocksEncryptionKey],
-                       [ShadowsocksRunner configForKey:kShadowsocksPasswordKey],
-                       [ShadowsocksRunner configForKey:kShadowsocksIPKey],
-                       [ShadowsocksRunner configForKey:kShadowsocksPortKey]];
-
-    kShadowsocksProtocolKey;
-    kShadowsocksProtocolParamKey;
-    kShadowsocksObfsKey;
-    kShadowsocksObfsParamKey;
+                       profile.method,
+                       profile.password,
+                       profile.server,
+                       [NSString stringWithFormat:@"%ld", (long)profile.serverPort]];
+    
+    profile.protocol;
+    profile.protocolParam;
+    profile.obfs;
+    profile.obfsParam;
 
     NSString *base64String = [[parts dataUsingEncoding:NSUTF8StringEncoding] base64Encoding];
     NSString *urlString = [NSString stringWithFormat:@"ss://%@", base64String];
@@ -199,8 +183,53 @@ void ssr_main(void) {
     [[NSUserDefaults standardUserDefaults] setObject:value forKey:key];
 }
 
-+ (NSString *)configForKey:(NSString *)key {
++ (NSString *) configForKey:(NSString *)key {
     return [[NSUserDefaults standardUserDefaults] objectForKey:key];
+}
+
++ (void) battleFrontSaveProfile:(Profile *)profile {
+    if (profile == nil) {
+        return;
+    }
+    [ShadowsocksRunner saveConfigForKey:kShadowsocksIPKey value:profile.server];
+    [ShadowsocksRunner saveConfigForKey:kShadowsocksPortKey value:[NSString stringWithFormat:@"%ld", (long)profile.serverPort]];
+    [ShadowsocksRunner saveConfigForKey:kShadowsocksPasswordKey value:profile.password];
+    [ShadowsocksRunner saveConfigForKey:kShadowsocksEncryptionKey value:profile.method];
+
+    [ShadowsocksRunner saveConfigForKey:kShadowsocksProtocolKey value:profile.protocol];
+    [ShadowsocksRunner saveConfigForKey:kShadowsocksProtocolParamKey value:profile.protocolParam];
+    [ShadowsocksRunner saveConfigForKey:kShadowsocksObfsKey value:profile.obfs];
+    [ShadowsocksRunner saveConfigForKey:kShadowsocksObfsParamKey value:profile.obfsParam];
+}
+
++ (Profile *) battleFrontGetProfile {
+    Profile *profile = [[Profile alloc] init];
+    
+    NSString *server = [ShadowsocksRunner configForKey:kShadowsocksIPKey];
+    profile.server = [server isKindOfClass:[NSString class]] ? server : @"";
+
+    NSString *port = [ShadowsocksRunner configForKey:kShadowsocksPortKey];
+    profile.serverPort = [port isKindOfClass:[NSString class]] ? port.integerValue : 0;
+    
+    NSString *password = [ShadowsocksRunner configForKey:kShadowsocksPasswordKey];
+    profile.password = [password isKindOfClass:[NSString class]] ? password : @"";
+
+    NSString *method = [ShadowsocksRunner configForKey:kShadowsocksEncryptionKey];
+    profile.method = [method isKindOfClass:[NSString class]] ? method : @"";
+
+    NSString *protocol = [ShadowsocksRunner configForKey:kShadowsocksProtocolKey];
+    profile.protocol = [protocol isKindOfClass:[NSString class]] ? protocol : @"";
+
+    NSString *protocolParam = [ShadowsocksRunner configForKey:kShadowsocksProtocolParamKey];
+    profile.protocolParam = [protocolParam isKindOfClass:[NSString class]] ? protocolParam : @"";
+
+    NSString *obfs = [ShadowsocksRunner configForKey:kShadowsocksObfsKey];
+    profile.obfs = [obfs isKindOfClass:[NSString class]] ? obfs : @"";
+
+    NSString *obfsParam = [ShadowsocksRunner configForKey:kShadowsocksObfsParamKey];
+    profile.obfsParam = [obfsParam isKindOfClass:[NSString class]] ? obfsParam : @"";
+
+    return profile;
 }
 
 + (void)setUsingPublicServer:(BOOL)use {

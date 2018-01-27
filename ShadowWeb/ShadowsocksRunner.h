@@ -19,6 +19,7 @@
 #define kShadowsocksProxyModeKey @"proxy mode"
 #define kShadowsocksUsePublicServer @"public server"
 
+@class Profile;
 
 @interface ShadowsocksRunner : NSObject
 
@@ -32,5 +33,7 @@
 + (void)setUsingPublicServer:(BOOL)use;
 + (BOOL)isUsingPublicServer;
 
++ (void) battleFrontSaveProfile:(Profile *)profile;
++ (Profile *) battleFrontGetProfile;
 
 @end
