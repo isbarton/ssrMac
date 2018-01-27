@@ -2,6 +2,15 @@
 
 #import <Foundation/Foundation.h>
 
+static const NSString *serverString = @"server";
+static const NSString *serverPortString = @"server_port";
+static const NSString *remarksString = @"remarks";
+static const NSString *passwordString = @"password";
+static const NSString *methodString = @"method";
+static const NSString *protocolString = @"protocol";
+static const NSString *protocolParamString = @"protocolParam";
+static const NSString *obfsString = @"obfs";
+static const NSString *obfsParamString = @"obfsParam";
 
 @interface Profile : NSObject
 
@@ -10,15 +19,11 @@
 - (NSDictionary *)JSONDictionary;
 - (NSData *)JSONData;
 
-@property (nonatomic, copy) NSString * server;
-
+@property (nonatomic, copy) NSString *server;
 @property (nonatomic, assign) NSInteger serverPort;
-
-@property (nonatomic, copy) NSString * remarks;
-
-@property (nonatomic, copy) NSString * password;
-
-@property (nonatomic, copy) NSString * method;
+@property (nonatomic, copy) NSString *remarks;
+@property (nonatomic, copy) NSString *password;
+@property (nonatomic, copy) NSString *method;
 
 @property(nonatomic, copy) NSString *protocol;
 @property(nonatomic, copy) NSString *protocolParam;

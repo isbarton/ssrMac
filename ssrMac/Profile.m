@@ -15,20 +15,32 @@
     }
 
     if (self) {
-         self.server = (dictionary[@"server"] != [NSNull null]) ? dictionary[@"server"] : nil;
+        NSString *server = dictionary[serverString];
+        _server = [server isKindOfClass:[NSString class]] ? server : @"";
 
-        self.serverPort = (dictionary[@"server_port"] != [NSNull null]) ? [dictionary[@"server_port"] integerValue] : 0;
+        NSNumber *port = dictionary[serverPortString];
+        _serverPort = [port isKindOfClass:[NSNumber class]] ? [port integerValue] : 0;
 
-        self.remarks = (dictionary[@"remarks"] != [NSNull null]) ? dictionary[@"remarks"] : nil;
+        NSString *remarks = dictionary[remarksString];
+        _remarks = [remarks isKindOfClass:[NSString class]] ? remarks : @"";
 
-        self.password = (dictionary[@"password"] != [NSNull null]) ? dictionary[@"password"] : nil;
+        NSString *password = dictionary[passwordString];
+        _password = [password isKindOfClass:[NSString class]] ? password : @"";
 
-        self.method = (dictionary[@"method"] != [NSNull null]) ? dictionary[@"method"] : nil;
+        NSString *method = dictionary[methodString];
+        _method = [method isKindOfClass:[NSString class]] ? method : @"";
         
-        _protocol = (dictionary[@"protocol"] != [NSNull null]) ? dictionary[@"protocol"] : nil;
-        _protocolParam = (dictionary[@"protocolParam"] != [NSNull null]) ? dictionary[@"protocolParam"] : nil;
-        _obfs = (dictionary[@"obfs"] != [NSNull null]) ? dictionary[@"obfs"] : nil;
-        _obfsParam = (dictionary[@"obfsParam"] != [NSNull null]) ? dictionary[@"obfsParam"] : nil;
+        NSString *protocol = dictionary[protocolString];
+        _protocol = [protocol isKindOfClass:[NSString class]] ? protocol : @"";
+        
+        NSString *protocolParam = dictionary[protocolParamString];
+        _protocolParam = [protocolParam isKindOfClass:[NSString class]] ? protocolParam : @"";
+        
+        NSString *obfs = dictionary[obfsString];
+        _obfs = [obfs isKindOfClass:[NSString class]] ? obfs : @"";
+        
+        NSString *obfsParam = dictionary[obfsParamString];
+        _obfsParam = [obfsParam isKindOfClass:[NSString class]] ? obfsParam : @"";
     }
     return self;
 }
@@ -48,28 +60,20 @@
 }
 
 - (NSDictionary *)JSONDictionary {
-
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
 
- 
-    dictionary[@"server"] = (self.server != nil) ? self.server : [NSNull null];
-  
-    dictionary[@"server_port"] = @(self.serverPort);
-  
-    dictionary[@"remarks"] = (self.remarks != nil) ? self.remarks : [NSNull null];
-  
-    dictionary[@"password"] = (self.password != nil) ? self.password : [NSNull null];
-  
-    dictionary[@"method"] = (self.method != nil) ? self.method : [NSNull null];
-    
-    dictionary[@"protocol"] = (_protocol != nil) ? _protocol : [NSNull null];
-    dictionary[@"protocolParam"] = (_protocolParam != nil) ? _protocolParam : [NSNull null];
-    dictionary[@"obfs"] = (_obfs != nil) ? _obfs : [NSNull null];
-    dictionary[@"obfsParam"] = (_obfsParam != nil) ? _obfsParam : [NSNull null];
+    dictionary[serverString] = self.server;
+    dictionary[serverPortString] = @(self.serverPort);
+    dictionary[remarksString] = self.remarks;
+    dictionary[passwordString] = self.password;
+    dictionary[methodString] = self.method;
+    dictionary[protocolString] = self.protocol;
+    dictionary[protocolParamString] = self.protocolParam;
+    dictionary[obfsString] = self.obfs;
+    dictionary[obfsParamString] = self.obfsParam;
 
     return dictionary;
 }
-
 
 - (NSData *)JSONData {
     NSError *error = nil;
@@ -78,6 +82,34 @@
         @throw error;
     }
     return data;
+}
+
+- (NSString *) server {
+    if (_server == nil) {
+        _server = @"";
+    }
+    return _server;
+}
+
+- (NSInteger) serverPort {
+    if (_serverPort == 0) {
+        _serverPort = 443;
+    }
+    return _serverPort;
+}
+
+- (NSString *) remarks {
+    if (_remarks == nil) {
+        _remarks = @"";
+    }
+    return _remarks;
+}
+
+- (NSString *) password {
+    if (_password == nil) {
+        _password = @"";
+    }
+    return _password;
 }
 
 - (NSString *) method {
