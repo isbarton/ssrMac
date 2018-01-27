@@ -106,9 +106,6 @@
         return;
     }
     Profile *profile = [[Profile alloc] init];
-    profile.server = @"";
-    profile.serverPort = 443;
-    profile.password = @"";
     [((NSMutableArray *) _configuration.profiles) addObject:profile];
     [self.tableView reloadData];
     [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:(_configuration.profiles.count - 1)] byExtendingSelection:NO];
