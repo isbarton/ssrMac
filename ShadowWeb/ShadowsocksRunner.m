@@ -78,9 +78,8 @@ void ssr_stop(uv_loop_t *loop) {
 uv_loop_t * loop = NULL;
 
 + (BOOL) runProxy {
-    if (loop == NULL) {
-        loop = uv_default_loop();
-    }
+    loop = calloc(1, sizeof(uv_loop_t)); // TODO: memory leak fixing.
+    uv_loop_init(loop);
     if (![ShadowsocksRunner settingsAreNotComplete]) {
         ssr_main_loop(loop);
         return YES;
