@@ -34,7 +34,7 @@
     NSMenuItem *globalMenuItem;
     NSMenuItem *qrCodeMenuItem;
     NSMenu *serversMenu;
-    BOOL isRunning;
+    BOOL _isRunning;
     NSString *runningMode;
     NSData *originalPACData;
     FSEventStreamRef fsEventStream;
@@ -188,7 +188,7 @@ static SWBAppDelegate *appDelegate;
 }
 
 - (void)updateMenu {
-    if (isRunning) {
+    if (_isRunning) {
         statusMenuItem.title = _L(Shadowsocks: On);
         enableMenuItem.title = _L(Turn Shadowsocks Off);
         NSImage *image = [NSImage imageNamed:@"menu_icon"];
@@ -231,7 +231,7 @@ void onPACChange(
 }
 
 - (void)reloadSystemProxy {
-    if (isRunning) {
+    if (_isRunning) {
         [self toggleSystemProxy:NO];
         [self toggleSystemProxy:YES];
     }
@@ -325,7 +325,7 @@ void onPACChange(
 
 - (void)applicationWillTerminate:(NSNotification *)notification {
     NSLog(@"terminating");
-    if (isRunning) {
+    if (_isRunning) {
         [self toggleSystemProxy:NO];
     }
 }
@@ -409,8 +409,8 @@ void onPACChange(
 }
 
 - (void)toggleRunning {
-    [self toggleSystemProxy:!isRunning];
-    [[NSUserDefaults standardUserDefaults] setBool:isRunning forKey:kShadowsocksIsRunningKey];
+    [self toggleSystemProxy:!_isRunning];
+    [[NSUserDefaults standardUserDefaults] setBool:_isRunning forKey:kShadowsocksIsRunningKey];
     [self updateMenu];
 }
 
@@ -423,7 +423,7 @@ void onPACChange(
 }
 
 - (void)toggleSystemProxy:(BOOL)useProxy {
-    isRunning = useProxy;
+    _isRunning = useProxy;
     
     NSTask *task;
     task = [[NSTask alloc] init];
