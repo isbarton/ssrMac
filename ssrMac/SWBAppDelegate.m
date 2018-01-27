@@ -23,6 +23,7 @@
 #define kSysconfVersion @"1.0.0"
 
 @interface SWBAppDelegate () <SWBConfigWindowControllerDelegate>
+@property(nonatomic, assign) BOOL useProxy;
 @end
 
 @implementation SWBAppDelegate {
@@ -34,7 +35,6 @@
     NSMenuItem *globalMenuItem;
     NSMenuItem *qrCodeMenuItem;
     NSMenu *serversMenu;
-    BOOL _isRunning;
     NSString *runningMode;
     NSData *originalPACData;
     FSEventStreamRef fsEventStream;
@@ -52,7 +52,7 @@ static SWBAppDelegate *appDelegate;
     // Insert code here to initialize your application
     dispatch_queue_t proxy = dispatch_queue_create("proxy", NULL);
     dispatch_async(proxy, ^{
-        [self runProxy];
+        [self doRunProxyLoop];
     });
 
     originalPACData = [[NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"proxy" withExtension:@"pac.gz"]] gunzippedData];
@@ -126,6 +126,19 @@ static SWBAppDelegate *appDelegate;
     appDelegate = self;
 }
 
+- (BOOL) useProxy {
+    BOOL result = YES;
+    NSNumber *tmp = [[NSUserDefaults standardUserDefaults] objectForKey:kShadowsocksIsRunningKey];
+    if ([tmp isKindOfClass:[NSNumber class]]) {
+        result = [tmp boolValue];
+    }
+    return result;
+}
+
+- (void) setUseProxy:(BOOL)useProxy {
+    [[NSUserDefaults standardUserDefaults] setBool:useProxy forKey:kShadowsocksIsRunningKey];
+}
+
 - (NSData *)PACData {
     if ([[NSFileManager defaultManager] fileExistsAtPath:PACPath]) {
         return [NSData dataWithContentsOfFile:PACPath];
@@ -188,7 +201,7 @@ static SWBAppDelegate *appDelegate;
 }
 
 - (void)updateMenu {
-    if (_isRunning) {
+    if (self.useProxy) {
         statusMenuItem.title = _L(Shadowsocks: On);
         enableMenuItem.title = _L(Turn Shadowsocks Off);
         NSImage *image = [NSImage imageNamed:@"menu_icon"];
@@ -231,7 +244,7 @@ void onPACChange(
 }
 
 - (void)reloadSystemProxy {
-    if (_isRunning) {
+    if (self.useProxy) {
         [self toggleSystemProxy:NO];
         [self toggleSystemProxy:YES];
     }
@@ -323,9 +336,9 @@ void onPACChange(
     [configWindowController.window makeKeyAndOrderFront:nil];
 }
 
-- (void)applicationWillTerminate:(NSNotification *)notification {
+- (void) applicationWillTerminate:(NSNotification *)notification {
     NSLog(@"terminating");
-    if (_isRunning) {
+    if (self.useProxy) {
         [self toggleSystemProxy:NO];
     }
 }
@@ -338,7 +351,7 @@ void onPACChange(
 
 #pragma mark -
 
-- (void)runProxy {
+- (void) doRunProxyLoop {
     [ShadowsocksRunner reloadConfig];
     for (; ;) {
         if ([ShadowsocksRunner runProxy]) {
@@ -399,22 +412,22 @@ void onPACChange(
     return YES;
 }
 
-- (void)initializeProxy {
+- (void) initializeProxy {
     runningMode = [self runningMode];
-    id isRunningObject = [[NSUserDefaults standardUserDefaults] objectForKey:kShadowsocksIsRunningKey];
-    if ((isRunningObject == nil) || [isRunningObject boolValue]) {
+    if (self.useProxy) {
         [self toggleSystemProxy:YES];
     }
     [self updateMenu];
 }
 
-- (void)toggleRunning {
-    [self toggleSystemProxy:!_isRunning];
-    [[NSUserDefaults standardUserDefaults] setBool:_isRunning forKey:kShadowsocksIsRunningKey];
+- (void) toggleRunning {
+    BOOL tmp = ! self.useProxy;
+    self.useProxy = tmp;
+    [self toggleSystemProxy:tmp];
     [self updateMenu];
 }
 
-- (NSString *)runningMode {
+- (NSString *) runningMode {
     NSString *mode = [[NSUserDefaults standardUserDefaults] stringForKey:kShadowsocksRunningModeKey];
     if (mode) {
         return mode;
@@ -422,41 +435,32 @@ void onPACChange(
     return @"auto";
 }
 
-- (void)toggleSystemProxy:(BOOL)useProxy {
-    _isRunning = useProxy;
-    
-    NSTask *task;
-    task = [[NSTask alloc] init];
+- (void) toggleSystemProxy:(BOOL)useProxy {
+    NSTask *task = [[NSTask alloc] init];
     [task setLaunchPath:kShadowsocksHelper];
 
-    NSString *param;
+    NSString *mode;
     if (useProxy) {
-        param = [self runningMode];
+        mode = [self runningMode];
     } else {
-        param = @"off";
+        mode = @"off";
     }
 
     // this log is very important
     NSLog(@"run shadowsocks helper: %@", kShadowsocksHelper);
-    NSArray *arguments;
-    arguments = [NSArray arrayWithObjects:param, nil];
-    [task setArguments:arguments];
+    [task setArguments:@[mode]];
 
-    NSPipe *stdoutpipe;
-    stdoutpipe = [NSPipe pipe];
+    NSPipe *stdoutpipe = [NSPipe pipe];
     [task setStandardOutput:stdoutpipe];
 
-    NSPipe *stderrpipe;
-    stderrpipe = [NSPipe pipe];
+    NSPipe *stderrpipe = [NSPipe pipe];
     [task setStandardError:stderrpipe];
 
-    NSFileHandle *file;
-    file = [stdoutpipe fileHandleForReading];
+    NSFileHandle *file = [stdoutpipe fileHandleForReading];
 
     [task launch];
 
-    NSData *data;
-    data = [file readDataToEndOfFile];
+    NSData *data = [file readDataToEndOfFile];
 
     NSString *string;
     string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
