@@ -23,17 +23,7 @@
             configuration.current = -1;
         } else {
             configuration.current = 0;
-            Profile *profile = [[Profile alloc] init];
-            profile.server = [ShadowsocksRunner configForKey:kShadowsocksIPKey];
-            profile.serverPort = [[ShadowsocksRunner configForKey:kShadowsocksPortKey] integerValue];
-            profile.password = [ShadowsocksRunner configForKey:kShadowsocksPasswordKey];
-            profile.method = [ShadowsocksRunner configForKey:kShadowsocksEncryptionKey];
-            
-            profile.protocol = [ShadowsocksRunner configForKey:kShadowsocksProtocolKey];
-            profile.protocolParam = [ShadowsocksRunner configForKey:kShadowsocksProtocolParamKey];
-            profile.obfs = [ShadowsocksRunner configForKey:kShadowsocksObfsKey];
-            profile.obfsParam = [ShadowsocksRunner configForKey:kShadowsocksObfsParamKey];
-
+            Profile *profile = [ShadowsocksRunner battleFrontGetProfile];
             [((NSMutableArray *)configuration.profiles) addObject:profile];
         }
         return configuration;
@@ -68,17 +58,8 @@
         [ShadowsocksRunner reloadConfig];
     } else {
         Profile *profile = configuration.profiles[configuration.current];
+        [ShadowsocksRunner battleFrontSaveProfile:profile];
         [ShadowsocksRunner setUsingPublicServer:NO];
-        [ShadowsocksRunner saveConfigForKey:kShadowsocksIPKey value:profile.server];
-        [ShadowsocksRunner saveConfigForKey:kShadowsocksPortKey value:[NSString stringWithFormat:@"%ld", (long)profile.serverPort]];
-        [ShadowsocksRunner saveConfigForKey:kShadowsocksPasswordKey value:profile.password];
-        [ShadowsocksRunner saveConfigForKey:kShadowsocksEncryptionKey value:profile.method];
-
-        [ShadowsocksRunner saveConfigForKey:kShadowsocksProtocolKey value:profile.protocol];
-        [ShadowsocksRunner saveConfigForKey:kShadowsocksProtocolParamKey value:profile.protocolParam];
-        [ShadowsocksRunner saveConfigForKey:kShadowsocksObfsKey value:profile.obfs];
-        [ShadowsocksRunner saveConfigForKey:kShadowsocksObfsParamKey value:profile.obfsParam];
-
         [ShadowsocksRunner reloadConfig];
     }
 }
