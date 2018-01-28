@@ -348,9 +348,6 @@
 		627A6E0A18B47E9300493BBC /* SWBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWBAppDelegate.h; sourceTree = "<group>"; };
 		627A6E0B18B47E9300493BBC /* SWBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWBAppDelegate.m; sourceTree = "<group>"; };
 		627A6E1018B47E9300493BBC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		627A6E1718B47E9300493BBC /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		627A6E3C18B47F4700493BBC /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libssl.dylib; sourceTree = DEVELOPER_DIR; };
-		627A6E3E18B47F5400493BBC /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libcrypto.dylib; sourceTree = DEVELOPER_DIR; };
 		627A6E5618B4887000493BBC /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
 		628693EA16DA26E2008B1A26 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		628C3DE218AD5B100090632A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -366,7 +363,6 @@
 		629AC93D18B49B97001D2771 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		629AC93F18B49C33001D2771 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		62CD918F178977B500B2CB55 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		62DAB9DF177A11D7003DFFDE /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		62E27E5318C1D03D0086033D /* proxy.pac.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = proxy.pac.gz; sourceTree = SOURCE_ROOT; };
 		62E27E5B18C1D0F80086033D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		62E27E5D18C1D1000086033D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
@@ -584,14 +580,11 @@
 				629AC93B18B49B69001D2771 /* AppKit.framework */,
 				629AC93918B49B56001D2771 /* Cocoa.framework */,
 				627A6E5618B4887000493BBC /* WebKit.framework */,
-				627A6E3E18B47F5400493BBC /* libcrypto.dylib */,
-				627A6E3C18B47F4700493BBC /* libssl.dylib */,
 				6274847318B1FD7900A9CDF0 /* ImageIO.framework */,
 				6274847118B1FD6F00A9CDF0 /* QuartzCore.framework */,
 				6274846F18B1FD6500A9CDF0 /* CoreMedia.framework */,
 				6274846D18B1FD5C00A9CDF0 /* CoreVideo.framework */,
 				62CD918F178977B500B2CB55 /* MessageUI.framework */,
-				62DAB9DF177A11D7003DFFDE /* Crashlytics.framework */,
 				621FCC081760400800411E5F /* CFNetwork.framework */,
 				621FCC061760400400411E5F /* MobileCoreServices.framework */,
 				96D80C04176CE1D7006C8078 /* AVFoundation.framework */,
@@ -600,7 +593,6 @@
 				621571AA16CF6BCB003D96B4 /* Foundation.framework */,
 				621571AC16CF6BCB003D96B4 /* CoreGraphics.framework */,
 				627A6DF818B47E9300493BBC /* Cocoa.framework */,
-				627A6E1718B47E9300493BBC /* XCTest.framework */,
 				627A6DFA18B47E9300493BBC /* Other Frameworks */,
 			);
 			name = Frameworks;
