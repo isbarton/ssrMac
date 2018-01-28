@@ -20,6 +20,7 @@ Build from source code
 Then pull **source code** and submodules
 ```bash
     git clone https://github.com/ShadowsocksR-Live/ssrMac.git
+    cd ssrMac
     git submodule update --init
 ```
 
