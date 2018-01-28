@@ -108,7 +108,8 @@
     Profile *profile = [[Profile alloc] init];
     [((NSMutableArray *) _configuration.profiles) addObject:profile];
     [self.tableView reloadData];
-    [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:(_configuration.profiles.count - 1)] byExtendingSelection:NO];
+    NSIndexSet *indexes = [NSIndexSet indexSetWithIndex:(_configuration.profiles.count - 1)];
+    [self.tableView selectRowIndexes:indexes byExtendingSelection:NO];
     [self updateSettingsBoxVisible:self];
     [self loadCurrentProfile];
 }
@@ -120,7 +121,8 @@
         [self.tableView reloadData];
         [self updateSettingsBoxVisible:self];
         if (_configuration.profiles.count > 0) {
-            [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:(_configuration.profiles.count - 1)] byExtendingSelection:NO];
+            NSIndexSet *indexes = [NSIndexSet indexSetWithIndex:(_configuration.profiles.count - 1)];
+            [self.tableView selectRowIndexes:indexes byExtendingSelection:NO];
         }
         [self loadCurrentProfile];
         if (_configuration.current > selection) {
