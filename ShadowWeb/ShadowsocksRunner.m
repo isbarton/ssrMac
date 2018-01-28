@@ -4,12 +4,13 @@
 //
 
 #import "ShadowsocksRunner.h"
+#import "SWBAppDelegate.h"
 #import "Profile.h"
 #include "ssrcipher.h"
 #include "defs.h"
 #include <uv.h>
 
-struct server_config * build_config_object(void) {
+struct server_config * build_config_object(unsigned short listenPort) {
     Profile *profile = [ShadowsocksRunner battleFrontGetProfile];
 
     const char *protocol = profile.protocol.UTF8String;
@@ -20,7 +21,7 @@ struct server_config * build_config_object(void) {
 
     struct server_config *config = config_create();
 
-    config->listen_port = DEFAULT_BIND_PORT;
+    config->listen_port = listenPort;
     string_safe_assign(&config->method, profile.method.UTF8String);
     string_safe_assign(&config->remote_host, profile.server.UTF8String);
     config->remote_port = (unsigned short) profile.serverPort;
@@ -33,10 +34,10 @@ struct server_config * build_config_object(void) {
     return config;
 }
 
-void ssr_main_loop(uv_loop_t *loop) {
+void ssr_main_loop(uv_loop_t *loop, unsigned short listenPort) {
     struct server_config *config = NULL;
     do {
-        config = build_config_object();
+        config = build_config_object(listenPort);
         if (config == NULL) {
             break;
         }
@@ -47,7 +48,6 @@ void ssr_main_loop(uv_loop_t *loop) {
 
         //uv_loop_t *loop = uv_loop_new(); // uv_default_loop();
         listener_run(config, loop);
-        //uv_loop_delete(loop);
     } while(0);
 
     config_release(config);
@@ -77,12 +77,17 @@ void ssr_stop(uv_loop_t *loop) {
 uv_loop_t * loop = NULL;
 
 + (BOOL) runProxy {
+    SWBAppDelegate *appDelegate = (SWBAppDelegate *) [NSApplication sharedApplication].delegate;
+    NSAssert([appDelegate isKindOfClass:[SWBAppDelegate class]], @"SWBAppDelegate");
+    
+    unsigned short listenPort = (unsigned short) [appDelegate toggleSystemProxyExternal];
+    
     BOOL result = NO;
     if (![ShadowsocksRunner settingsAreNotComplete]) {
         loop = calloc(1, sizeof(uv_loop_t)); // TODO: memory leak fixing.
         uv_loop_init(loop);
 
-        ssr_main_loop(loop);
+        ssr_main_loop(loop, listenPort);
 
         uv_loop_close(loop);
         // free(loop); loop = NULL;

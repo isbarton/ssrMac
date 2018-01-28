@@ -11,16 +11,18 @@
 
 #define VERSION @"1.0.0"
 
-void doSettingProxy(NSString *mode, AuthorizationRef authRef);
+void doSettingProxy(NSString *mode, unsigned short port, AuthorizationRef authRef);
 
 int main(int argc, const char * argv[])
 {
-    if (argc != 2) {
-        printf("usage: ssr_mac_sysconf off/auto/global\n");
+    if (argc != 3) {
+        printf("usage: ssr_mac_sysconf off/auto/global portNumber\n");
         return 1;
     }
     @autoreleasepool {
         NSString *mode = [NSString stringWithUTF8String:argv[1]];
+        
+        unsigned short port = (unsigned short) atoi(argv[2]);
         
         NSSet *support_args = [NSSet setWithObjects:@"off", @"auto", @"global", @"-v", nil];
         if (![support_args containsObject:mode]) {
@@ -33,7 +35,7 @@ int main(int argc, const char * argv[])
             return 0;
         }
 
-        static AuthorizationRef authRef;
+        static AuthorizationRef authRef = NULL;
         static AuthorizationFlags authFlags;
         authFlags = kAuthorizationFlagDefaults
         | kAuthorizationFlagExtendRights
@@ -47,7 +49,11 @@ int main(int argc, const char * argv[])
                 NSLog(@"No authorization has been granted to modify network configuration");
                 return 1;
             }
-            doSettingProxy(mode, authRef);
+            doSettingProxy(mode, port, authRef);
+        }
+
+        if (authRef) {
+            AuthorizationFree(authRef, authFlags);
         }
 
         printf("pac proxy set to %s", [mode UTF8String]);
@@ -56,8 +62,8 @@ int main(int argc, const char * argv[])
     return 0;
 }
 
-void doSettingProxy(NSString *mode, AuthorizationRef authRef) {
-    SCPreferencesRef prefRef = SCPreferencesCreateWithAuthorization(nil, CFSTR("Shadowsocks"), nil, authRef);
+void doSettingProxy(NSString *mode, unsigned short port, AuthorizationRef authRef) {
+    SCPreferencesRef prefRef = SCPreferencesCreateWithAuthorization(nil, CFSTR("ShadowsocksR"), nil, authRef);
 
     NSDictionary *sets = (__bridge NSDictionary *)SCPreferencesGetValue(prefRef, kSCPrefNetworkServices);
 
@@ -81,7 +87,7 @@ void doSettingProxy(NSString *mode, AuthorizationRef authRef) {
                 [proxies setObject:[NSNumber numberWithInt:1] forKey:(NSString *)kCFNetworkProxiesProxyAutoConfigEnable];
             } else if ([mode isEqualToString:@"global"]) {
                 [proxies setObject:@"127.0.0.1" forKey:(NSString *)kCFNetworkProxiesSOCKSProxy];
-                [proxies setObject:[NSNumber numberWithInteger:1080] forKey:(NSString*)kCFNetworkProxiesSOCKSPort];
+                [proxies setObject:@(port) forKey:(NSString*)kCFNetworkProxiesSOCKSPort];
                 [proxies setObject:[NSNumber numberWithInt:1] forKey:(NSString*)kCFNetworkProxiesSOCKSEnable];
             }
             SCPreferencesPathSetValue(prefRef, (__bridge CFStringRef)[NSString stringWithFormat:@"/%@/%@/%@", kSCPrefNetworkServices, key, kSCEntNetProxies], (__bridge CFDictionaryRef)proxies);

@@ -16,6 +16,7 @@
 #import "ProfileManager.h"
 #import <AFNetworking/AFNetworking.h>
 #import "qrCodeOnScreen.h"
+#include "ssrcipher.h"
 
 #define kShadowsocksIsRunningKey @"ShadowsocksIsRunning"
 #define kShadowsocksRunningModeKey @"ShadowsocksMode"
@@ -24,6 +25,7 @@
 
 @interface SWBAppDelegate () <SWBConfigWindowControllerDelegate>
 @property(nonatomic, assign) BOOL useProxy;
+@property(nonatomic, strong) NSString *runningMode;
 @end
 
 @implementation SWBAppDelegate {
@@ -35,18 +37,20 @@
     NSMenuItem *globalMenuItem;
     NSMenuItem *qrCodeMenuItem;
     NSMenu *serversMenu;
-    NSString *runningMode;
     NSData *originalPACData;
     FSEventStreamRef fsEventStream;
     NSString *configPath;
     NSString *PACPath;
     NSString *userRulePath;
     AFHTTPSessionManager *manager;
+    NSInteger _listenPort;
 }
 
 static SWBAppDelegate *appDelegate;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    _listenPort = DEFAULT_BIND_PORT;
+    
     [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(handleURLEvent:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
 
     // Insert code here to initialize your application
@@ -116,7 +120,6 @@ static SWBAppDelegate *appDelegate;
     [self installHelper];
     [self initializeProxy];
 
-
     [self updateMenu];
 
     configPath = [NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".ssrMac"];
@@ -148,15 +151,13 @@ static SWBAppDelegate *appDelegate;
 }
 
 - (void)enableAutoProxy {
-    runningMode = @"auto";
-    [[NSUserDefaults standardUserDefaults] setValue:runningMode forKey:kShadowsocksRunningModeKey];
+    self.runningMode = @"auto";
     [self updateMenu];
     [self reloadSystemProxy];
 }
 
 - (void)enableGlobal {
-    runningMode = @"global";
-    [[NSUserDefaults standardUserDefaults] setValue:runningMode forKey:kShadowsocksRunningModeKey];
+    self.runningMode = @"global";
     [self updateMenu];
     [self reloadSystemProxy];
 }
@@ -214,11 +215,13 @@ static SWBAppDelegate *appDelegate;
         [image setTemplate:YES];
         self.item.image = image;
     }
-    
-    if ([runningMode isEqualToString:@"auto"]) {
+
+    NSString *mode = [self runningMode];
+
+    if ([mode isEqualToString:@"auto"]) {
         [autoMenuItem setState:1];
         [globalMenuItem setState:0];
-    } else if([runningMode isEqualToString:@"global"]) {
+    } else if([mode isEqualToString:@"global"]) {
         [autoMenuItem setState:0];
         [globalMenuItem setState:1];
     }
@@ -243,10 +246,10 @@ void onPACChange(
     [appDelegate reloadSystemProxy];
 }
 
-- (void)reloadSystemProxy {
+- (void) reloadSystemProxy {
     if (self.useProxy) {
-        [self toggleSystemProxy:NO];
-        [self toggleSystemProxy:YES];
+        [self toggleSystemProxy:NO increasePort:NO];
+        [self toggleSystemProxy:YES increasePort:NO];
     }
 }
 
@@ -339,7 +342,7 @@ void onPACChange(
 - (void) applicationWillTerminate:(NSNotification *)notification {
     NSLog(@"terminating");
     if (self.useProxy) {
-        [self toggleSystemProxy:NO];
+        [self toggleSystemProxy:NO increasePort:NO];
     }
 }
 
@@ -387,9 +390,7 @@ void onPACChange(
     task = [[NSTask alloc] init];
     [task setLaunchPath:kShadowsocksHelper];
     
-    NSArray *args;
-    args = [NSArray arrayWithObjects:@"-v", nil];
-    [task setArguments: args];
+    [task setArguments:@[@"-v", @"0"]];
     
     NSPipe *pipe;
     pipe = [NSPipe pipe];
@@ -400,11 +401,8 @@ void onPACChange(
     
     [task launch];
     
-    NSData *data;
-    data = [fd readDataToEndOfFile];
-    
-    NSString *str;
-    str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSData *data = [fd readDataToEndOfFile];
+    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
     if (![str isEqualToString:kSysconfVersion]) {
         return NO;
@@ -413,9 +411,8 @@ void onPACChange(
 }
 
 - (void) initializeProxy {
-    runningMode = [self runningMode];
     if (self.useProxy) {
-        [self toggleSystemProxy:YES];
+        [self toggleSystemProxy:YES increasePort:NO];
     }
     [self updateMenu];
 }
@@ -423,19 +420,28 @@ void onPACChange(
 - (void) toggleRunning {
     BOOL tmp = ! self.useProxy;
     self.useProxy = tmp;
-    [self toggleSystemProxy:tmp];
+    [self toggleSystemProxy:tmp increasePort:NO];
     [self updateMenu];
 }
 
 - (NSString *) runningMode {
     NSString *mode = [[NSUserDefaults standardUserDefaults] stringForKey:kShadowsocksRunningModeKey];
-    if (mode) {
-        return mode;
-    }
-    return @"auto";
+    return mode?:@"auto";
 }
 
-- (void) toggleSystemProxy:(BOOL)useProxy {
+- (void) setRunningMode:(NSString *)runningMode {
+    if (runningMode.length == 0) {
+        return;
+    }
+    [[NSUserDefaults standardUserDefaults] setValue:runningMode forKey:kShadowsocksRunningModeKey];
+}
+
+- (NSInteger) toggleSystemProxyExternal {
+    [self toggleSystemProxy:self.useProxy increasePort:YES];
+    return _listenPort;
+}
+
+- (void) toggleSystemProxy:(BOOL)useProxy increasePort:(BOOL)increasePort {
     NSTask *task = [[NSTask alloc] init];
     [task setLaunchPath:kShadowsocksHelper];
 
@@ -446,9 +452,15 @@ void onPACChange(
         mode = @"off";
     }
 
+    if (increasePort) {
+        ++_listenPort;
+    }
+
+    NSString *portStr = [NSString stringWithFormat:@"%ld", (long)_listenPort];
+
     // this log is very important
     NSLog(@"run shadowsocks helper: %@", kShadowsocksHelper);
-    [task setArguments:@[mode]];
+    [task setArguments:@[mode, portStr]];
 
     NSPipe *stdoutpipe = [NSPipe pipe];
     [task setStandardOutput:stdoutpipe];
