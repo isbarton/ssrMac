@@ -1,4 +1,4 @@
-Shadowsocks for iOS and OSX
+ShadowsocksR for OSX
 ===========================
 [![Build Status](https://travis-ci.org/shadowsocks/shadowsocks-iOS.svg?branch=master)](https://travis-ci.org/shadowsocks/shadowsocks-iOS)
 
@@ -30,8 +30,6 @@ The project is released under the terms of [GPLv3](https://raw.github.com/shadow
 Bugs and Issues
 ----------------
 
-Please visit [issue tracker](https://github.com/shadowsocks/shadowsocks-iOS/issues?state=open)
-
-Mailing list: http://groups.google.com/group/shadowsocks
+Please visit [issue tracker](https://github.com/ShadowsocksR-Live/ssrMac/issues?state=open)
 
 Also see [troubleshooting](https://github.com/clowwindy/shadowsocks/wiki/Troubleshooting)
