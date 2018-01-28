@@ -11,7 +11,7 @@
 
 struct server_config * build_config_object(void) {
     Profile *profile = [ShadowsocksRunner battleFrontGetProfile];
-    
+
     const char *protocol = profile.protocol.UTF8String;
     if (protocol && strcmp(protocol, "verify_sha1") == 0) {
         // LOGI("The verify_sha1 protocol is deprecate! Fallback to origin protocol.");
@@ -29,7 +29,7 @@ struct server_config * build_config_object(void) {
     string_safe_assign(&config->protocol_param, profile.protocolParam.UTF8String);
     string_safe_assign(&config->obfs, profile.obfs.UTF8String);
     string_safe_assign(&config->obfs_param, profile.obfsParam.UTF8String);
-    
+
     return config;
 }
 
@@ -40,16 +40,16 @@ void ssr_main_loop(uv_loop_t *loop) {
         if (config == NULL) {
             break;
         }
-        
+
         if (config->method == NULL || config->password==NULL || config->remote_host==NULL) {
             break;
         }
-        
+
         //uv_loop_t *loop = uv_loop_new(); // uv_default_loop();
         listener_run(config, loop);
         //uv_loop_delete(loop);
     } while(0);
-    
+
     config_release(config);
 }
 
@@ -60,7 +60,6 @@ void ssr_stop(uv_loop_t *loop) {
 }
 
 @implementation ShadowsocksRunner {
-
 }
 
 + (BOOL)settingsAreNotComplete {
@@ -78,17 +77,22 @@ void ssr_stop(uv_loop_t *loop) {
 uv_loop_t * loop = NULL;
 
 + (BOOL) runProxy {
-    loop = calloc(1, sizeof(uv_loop_t)); // TODO: memory leak fixing.
-    uv_loop_init(loop);
+    BOOL result = NO;
     if (![ShadowsocksRunner settingsAreNotComplete]) {
+        loop = calloc(1, sizeof(uv_loop_t)); // TODO: memory leak fixing.
+        uv_loop_init(loop);
+
         ssr_main_loop(loop);
-        return YES;
+
+        uv_loop_close(loop);
+        // free(loop); loop = NULL;
+        result = YES;
     } else {
 #ifdef DEBUG
         NSLog(@"warning: settings are not complete");
 #endif
-        return NO;
     }
+    return result;
 }
 
 + (void) reloadConfig {
@@ -131,9 +135,9 @@ uv_loop_t * loop = NULL;
             errorReason = @"wrong position";
             continue;
         }
-        
+
         Profile *profile = [[Profile alloc] init];
-        
+
         profile.method = [urlString substringWithRange:NSMakeRange(0, firstColonRange.location)];
         profile.password = [urlString substringWithRange:NSMakeRange(firstColonRange.location + 1, lastAtRange.location - firstColonRange.location - 1)];
         profile.server = [urlString substringWithRange:NSMakeRange(lastAtRange.location + 1, lastColonRange.location - lastAtRange.location - 1)];
@@ -143,7 +147,7 @@ uv_loop_t * loop = NULL;
         profile.protocolParam;
         profile.obfs;
         profile.obfsParam;
-        
+
         [ShadowsocksRunner battleFrontSaveProfile:profile];
 
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kShadowsocksUsePublicServer];
@@ -159,15 +163,15 @@ uv_loop_t * loop = NULL;
     if ([ShadowsocksRunner isUsingPublicServer]) {
         return nil;
     }
-    
+
     Profile *profile = [ShadowsocksRunner battleFrontGetProfile];
-    
+
     NSString *parts = [NSString stringWithFormat:@"%@:%@@%@:%@",
                        profile.method,
                        profile.password,
                        profile.server,
                        [NSString stringWithFormat:@"%ld", (long)profile.serverPort]];
-    
+
     profile.protocol;
     profile.protocolParam;
     profile.obfs;
@@ -203,13 +207,13 @@ uv_loop_t * loop = NULL;
 
 + (Profile *) battleFrontGetProfile {
     Profile *profile = [[Profile alloc] init];
-    
+
     NSString *server = [ShadowsocksRunner configForKey:kShadowsocksIPKey];
     profile.server = [server isKindOfClass:[NSString class]] ? server : @"";
 
     NSString *port = [ShadowsocksRunner configForKey:kShadowsocksPortKey];
     profile.serverPort = [port isKindOfClass:[NSString class]] ? port.integerValue : 0;
-    
+
     NSString *password = [ShadowsocksRunner configForKey:kShadowsocksPasswordKey];
     profile.password = [password isKindOfClass:[NSString class]] ? password : @"";
 
@@ -233,7 +237,6 @@ uv_loop_t * loop = NULL;
 
 + (void)setUsingPublicServer:(BOOL)use {
     [[NSUserDefaults standardUserDefaults] setBool:use forKey:kShadowsocksUsePublicServer];
-
 }
 
 + (BOOL)isUsingPublicServer {
