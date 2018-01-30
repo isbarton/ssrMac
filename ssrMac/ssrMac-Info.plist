@@ -34,6 +34,18 @@
 				<string>ss</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLIconFile</key>
+			<string>menu_icon@2x</string>
+			<key>CFBundleURLName</key>
+			<string>ssr</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>ssr</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>2.6.0</string>
