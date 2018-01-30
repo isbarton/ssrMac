@@ -111,56 +111,29 @@ uv_loop_t * loop = NULL;
         return NO;
     }
     NSString *urlString = [url absoluteString];
-    int i = 0;
-    NSString *errorReason = nil;
-    while(i < 2) {
-        if (i == 1) {
-            NSData *data = [[NSData alloc] initWithBase64Encoding:url.host];
-            NSString *decodedString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            urlString = decodedString;
-        }
-        i++;
-        urlString = [urlString stringByReplacingOccurrencesOfString:@"ss://" withString:@"" options:NSAnchoredSearch range:NSMakeRange(0, urlString.length)];
-        NSRange firstColonRange = [urlString rangeOfString:@":"];
-        NSRange lastColonRange = [urlString rangeOfString:@":" options:NSBackwardsSearch];
-        NSRange lastAtRange = [urlString rangeOfString:@"@" options:NSBackwardsSearch];
-        if (firstColonRange.length == 0) {
-            errorReason = @"colon not found";
-            continue;
-        }
-        if (firstColonRange.location == lastColonRange.location) {
-            errorReason = @"only one colon";
-            continue;
-        }
-        if (lastAtRange.length == 0) {
-            errorReason = @"at not found";
-            continue;
-        }
-        if (!((firstColonRange.location < lastAtRange.location) && (lastAtRange.location < lastColonRange.location))) {
-            errorReason = @"wrong position";
-            continue;
-        }
-
+    
+    struct server_config *config = ssr_qr_code_decode(urlString.UTF8String);
+    if (config) {
         Profile *profile = [[Profile alloc] init];
-
-        profile.method = [urlString substringWithRange:NSMakeRange(0, firstColonRange.location)];
-        profile.password = [urlString substringWithRange:NSMakeRange(firstColonRange.location + 1, lastAtRange.location - firstColonRange.location - 1)];
-        profile.server = [urlString substringWithRange:NSMakeRange(lastAtRange.location + 1, lastColonRange.location - lastAtRange.location - 1)];
-        profile.serverPort = [urlString substringWithRange:NSMakeRange(lastColonRange.location + 1, urlString.length - lastColonRange.location - 1)].integerValue;
-
-        profile.protocol;
-        profile.protocolParam;
-        profile.obfs;
-        profile.obfsParam;
-
+        
+        profile.method = [NSString stringWithUTF8String:config->method];
+        profile.password = [NSString stringWithUTF8String:config->password];
+        profile.server = [NSString stringWithUTF8String:config->remote_host];
+        profile.serverPort = config->remote_port;
+        
+        profile.protocol = [NSString stringWithUTF8String:config->protocol];
+        profile.protocolParam = [NSString stringWithUTF8String:config->protocol_param?:""];
+        profile.obfs = [NSString stringWithUTF8String:config->obfs];
+        profile.obfsParam = [NSString stringWithUTF8String:config->obfs_param?:""];
+        
         [ShadowsocksRunner battleFrontSaveProfile:profile];
-
+        
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kShadowsocksUsePublicServer];
         [ShadowsocksRunner reloadConfig];
+        config_release(config);
+        
         return YES;
     }
-
-    NSLog(@"%@", errorReason);
     return NO;
 }
 
