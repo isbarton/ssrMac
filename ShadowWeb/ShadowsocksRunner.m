@@ -8,11 +8,10 @@
 #import "Profile.h"
 #include "ssrcipher.h"
 #include "defs.h"
+#include "ssr_qr_code.h"
 #include <uv.h>
 
-struct server_config * build_config_object(unsigned short listenPort) {
-    Profile *profile = [ShadowsocksRunner battleFrontGetProfile];
-
+struct server_config * build_config_object(Profile *profile, unsigned short listenPort) {
     const char *protocol = profile.protocol.UTF8String;
     if (protocol && strcmp(protocol, "verify_sha1") == 0) {
         // LOGI("The verify_sha1 protocol is deprecate! Fallback to origin protocol.");
@@ -37,7 +36,8 @@ struct server_config * build_config_object(unsigned short listenPort) {
 void ssr_main_loop(uv_loop_t *loop, unsigned short listenPort) {
     struct server_config *config = NULL;
     do {
-        config = build_config_object(listenPort);
+        Profile *profile = [ShadowsocksRunner battleFrontGetProfile];
+        config = build_config_object(profile, listenPort);
         if (config == NULL) {
             break;
         }
@@ -168,23 +168,18 @@ uv_loop_t * loop = NULL;
     if ([ShadowsocksRunner isUsingPublicServer]) {
         return nil;
     }
+    
+    char *qrCode = NULL;
 
     Profile *profile = [ShadowsocksRunner battleFrontGetProfile];
+    struct server_config *config = build_config_object(profile, 0);
+    qrCode = ssr_qr_code_encode(config, &malloc);
+    config_release(config);
 
-    NSString *parts = [NSString stringWithFormat:@"%@:%@@%@:%@",
-                       profile.method,
-                       profile.password,
-                       profile.server,
-                       [NSString stringWithFormat:@"%ld", (long)profile.serverPort]];
-
-    profile.protocol;
-    profile.protocolParam;
-    profile.obfs;
-    profile.obfsParam;
-
-    NSString *base64String = [[parts dataUsingEncoding:NSUTF8StringEncoding] base64Encoding];
-    NSString *urlString = [NSString stringWithFormat:@"ss://%@", base64String];
-    return [NSURL URLWithString:urlString];
+    NSString *r = [NSString stringWithUTF8String:qrCode];
+    free(qrCode);
+    
+    return [NSURL URLWithString:r];
 }
 
 + (void)saveConfigForKey:(NSString *)key value:(NSString *)value {

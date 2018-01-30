@@ -48,6 +48,8 @@
 		3A4AAF38201B60B9002F23AF /* libssr-native.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4AAEBE201B5AC3002F23AF /* libssr-native.a */; };
 		3A4AAF3B201B6441002F23AF /* ssrutils.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AAF39201B6441002F23AF /* ssrutils.c */; };
 		3A4AAF3C201B6441002F23AF /* ssrutils.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4AAF3A201B6441002F23AF /* ssrutils.h */; };
+		3A6006E520202B0E005EFE6E /* ssr_qr_code.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A6006D220202B0E005EFE6E /* ssr_qr_code.c */; };
+		3A6006E620202B0E005EFE6E /* ssr_qr_code.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A6006E420202B0E005EFE6E /* ssr_qr_code.h */; };
 		3ACA8C8A20199CB500839E41 /* libsodium.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ACA8C8920199CB500839E41 /* libsodium.a */; };
 		3ACA8C8C20199CBA00839E41 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ACA8C8B20199CBA00839E41 /* libcrypto.a */; };
 		3ACA8CCB2019C17800839E41 /* ShadowsocksRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACA8CC92019C17800839E41 /* ShadowsocksRunner.m */; };
@@ -304,6 +306,8 @@
 		3A4AAF33201B5C89002F23AF /* ssr_cipher_names.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ssr_cipher_names.h; path = "shadowsocksr-native/src/ssr_cipher_names.h"; sourceTree = "<group>"; };
 		3A4AAF39201B6441002F23AF /* ssrutils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ssrutils.c; path = "shadowsocksr-native/src/ssrutils.c"; sourceTree = "<group>"; };
 		3A4AAF3A201B6441002F23AF /* ssrutils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ssrutils.h; path = "shadowsocksr-native/src/ssrutils.h"; sourceTree = "<group>"; };
+		3A6006D220202B0E005EFE6E /* ssr_qr_code.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ssr_qr_code.c; path = "shadowsocksr-native/src/ssr_qr_code.c"; sourceTree = "<group>"; };
+		3A6006E420202B0E005EFE6E /* ssr_qr_code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ssr_qr_code.h; path = "shadowsocksr-native/src/ssr_qr_code.h"; sourceTree = "<group>"; };
 		3ACA8C8920199CB500839E41 /* libsodium.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsodium.a; path = /usr/local/lib/libsodium.a; sourceTree = "<group>"; };
 		3ACA8C8B20199CBA00839E41 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = /usr/local/lib/libcrypto.a; sourceTree = "<group>"; };
 		3ACA8CC92019C17800839E41 /* ShadowsocksRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShadowsocksRunner.m; path = ShadowWeb/ShadowsocksRunner.m; sourceTree = SOURCE_ROOT; };
@@ -437,6 +441,8 @@
 				3A4AAF3A201B6441002F23AF /* ssrutils.h */,
 				3A4AAF32201B5C89002F23AF /* ssr_cipher_names.c */,
 				3A4AAF33201B5C89002F23AF /* ssr_cipher_names.h */,
+				3A6006D220202B0E005EFE6E /* ssr_qr_code.c */,
+				3A6006E420202B0E005EFE6E /* ssr_qr_code.h */,
 			);
 			name = "ssr-native";
 			sourceTree = "<group>";
@@ -692,6 +698,7 @@
 			files = (
 				3A4AAF1C201B5BAD002F23AF /* verify.h in Headers */,
 				3A4AAF2C201B5C1D002F23AF /* s5.h in Headers */,
+				3A6006E620202B0E005EFE6E /* ssr_qr_code.h in Headers */,
 				3A4AAF0E201B5BAD002F23AF /* auth_chain.h in Headers */,
 				3A4AAF31201B5C1D002F23AF /* util.h in Headers */,
 				3A4AAF0C201B5BAD002F23AF /* auth.h in Headers */,
@@ -1013,6 +1020,7 @@
 				3A4AAF2B201B5C1D002F23AF /* s5.c in Sources */,
 				3A4AAF0F201B5BAD002F23AF /* base64.c in Sources */,
 				3A4AAF2D201B5C1D002F23AF /* ssrcipher.c in Sources */,
+				3A6006E520202B0E005EFE6E /* ssr_qr_code.c in Sources */,
 				3A4AAEF2201B5B74002F23AF /* encrypt.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
