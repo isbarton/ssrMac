@@ -318,6 +318,9 @@ void onPACChange(
 
 - (void) scanQRCode {
     NSArray<NSURL *> *qrs = [qrCodeOnScreen scan];
+    if (qrs.count) {
+        [self dealWithIncomingURL:[qrs[0] absoluteString]];
+    }
 }
 
 - (void)showLogs {
@@ -538,6 +541,10 @@ void onPACChange(
 
 - (void)handleURLEvent:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
     NSString *url = [[event paramDescriptorForKeyword:keyDirectObject] stringValue];
+    [self dealWithIncomingURL:url];
+}
+
+- (void) dealWithIncomingURL:(NSString *)url {
     NSAlert *alert = [[NSAlert alloc] init];
     [alert addButtonWithTitle:_L(OK)];
     [alert addButtonWithTitle:_L(Cancel)];
