@@ -53,9 +53,10 @@
         CGImageRef image = CGDisplayCreateImage(displays[displaysIndex]);
         NSArray *features = [detector featuresInImage:[CIImage imageWithCGImage:image]];
         for (CIQRCodeFeature *feature in features) {
-            NSLog(@"%@", feature.messageString);
-            if ( [feature.messageString hasPrefix:@"ss://"] ) {
-                NSURL *url = [NSURL URLWithString:feature.messageString];
+            NSString *messageString = feature.messageString;
+            NSLog(@"%@", messageString);
+            if ([messageString hasPrefix:@"ss://"] || [messageString hasPrefix:@"ssr://"]) {
+                NSURL *url = [NSURL URLWithString:messageString];
                 if (url) {
                     [foundSSUrls addObject:url];
                 }

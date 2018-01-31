@@ -110,31 +110,31 @@ uv_loop_t * loop = NULL;
     if (!url.host) {
         return NO;
     }
-    NSString *urlString = [url absoluteString];
     
-    struct server_config *config = ssr_qr_code_decode(urlString.UTF8String);
-    if (config) {
-        Profile *profile = [[Profile alloc] init];
-        
-        profile.method = [NSString stringWithUTF8String:config->method];
-        profile.password = [NSString stringWithUTF8String:config->password];
-        profile.server = [NSString stringWithUTF8String:config->remote_host];
-        profile.serverPort = config->remote_port;
-        
-        profile.protocol = [NSString stringWithUTF8String:config->protocol];
-        profile.protocolParam = [NSString stringWithUTF8String:config->protocol_param?:""];
-        profile.obfs = [NSString stringWithUTF8String:config->obfs];
-        profile.obfsParam = [NSString stringWithUTF8String:config->obfs_param?:""];
-        
-        [ShadowsocksRunner battleFrontSaveProfile:profile];
-        
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kShadowsocksUsePublicServer];
-        [ShadowsocksRunner reloadConfig];
-        config_release(config);
-        
-        return YES;
+    struct server_config *config = ssr_qr_code_decode([url absoluteString].UTF8String);
+    if (config == NULL) {
+        return NO;
     }
-    return NO;
+    
+    Profile *profile = [[Profile alloc] init];
+    
+    profile.method = [NSString stringWithUTF8String:config->method];
+    profile.password = [NSString stringWithUTF8String:config->password];
+    profile.server = [NSString stringWithUTF8String:config->remote_host];
+    profile.serverPort = config->remote_port;
+    
+    profile.protocol = [NSString stringWithUTF8String:config->protocol];
+    profile.protocolParam = [NSString stringWithUTF8String:config->protocol_param?:""];
+    profile.obfs = [NSString stringWithUTF8String:config->obfs];
+    profile.obfsParam = [NSString stringWithUTF8String:config->obfs_param?:""];
+    
+    [ShadowsocksRunner battleFrontSaveProfile:profile];
+    
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kShadowsocksUsePublicServer];
+    [ShadowsocksRunner reloadConfig];
+    config_release(config);
+    
+    return YES;
 }
 
 +(NSURL *)generateSSURL {
