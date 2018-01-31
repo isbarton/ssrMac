@@ -50,6 +50,9 @@
 		3A4AAF3C201B6441002F23AF /* ssrutils.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4AAF3A201B6441002F23AF /* ssrutils.h */; };
 		3A6006E520202B0E005EFE6E /* ssr_qr_code.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A6006D220202B0E005EFE6E /* ssr_qr_code.c */; };
 		3A6006E620202B0E005EFE6E /* ssr_qr_code.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A6006E420202B0E005EFE6E /* ssr_qr_code.h */; };
+		3A8E4A5420219874002E2FBA /* AFNetworking.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3AD6015F2018D50D00403182 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3A8E4A572021993D002E2FBA /* GZIP.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3AD601792018D7C900403182 /* GZIP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3A8E4A5C2021993D002E2FBA /* GCDWebServers.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3AD601492018D47800403182 /* GCDWebServers.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3ACA8C8A20199CB500839E41 /* libsodium.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ACA8C8920199CB500839E41 /* libsodium.a */; };
 		3ACA8C8C20199CBA00839E41 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ACA8C8B20199CBA00839E41 /* libcrypto.a */; };
 		3ACA8CCB2019C17800839E41 /* ShadowsocksRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACA8CC92019C17800839E41 /* ShadowsocksRunner.m */; };
@@ -262,6 +265,21 @@
 			remoteInfo = shadowsocks_sysconf;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3A8E4A4120219812002E2FBA /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 11;
+			files = (
+				3A8E4A572021993D002E2FBA /* GZIP.framework in CopyFiles */,
+				3A8E4A5420219874002E2FBA /* AFNetworking.framework in CopyFiles */,
+				3A8E4A5C2021993D002E2FBA /* GCDWebServers.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3A40B2CF2019E0BC00F33F80 /* qrCodeOnScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = qrCodeOnScreen.h; sourceTree = "<group>"; };
@@ -761,6 +779,7 @@
 				627A6DF318B47E9300493BBC /* Sources */,
 				627A6DF418B47E9300493BBC /* Frameworks */,
 				627A6DF518B47E9300493BBC /* Resources */,
+				3A8E4A4120219812002E2FBA /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1354,10 +1373,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ssrMac/ssrMac-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1394,6 +1410,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ssrMac/ssrMac-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
