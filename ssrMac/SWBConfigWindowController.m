@@ -180,12 +180,13 @@
     }
 }
 
-- (BOOL)saveCurrentProfile {
+- (BOOL) saveCurrentProfile {
     if (![self validateCurrentProfile]) {
         return NO;
     }
-    if (self.tableView.selectedRow >= 0 && self.tableView.selectedRow < _configuration.profiles.count) {
-        Profile *profile = _configuration.profiles[self.tableView.selectedRow];
+    NSInteger selectedRow = self.tableView.selectedRow;
+    if (0 <= selectedRow && selectedRow < _configuration.profiles.count) {
+        Profile *profile = _configuration.profiles[selectedRow];
         profile.server = [_serverField stringValue];
         profile.serverPort = [_portField integerValue];
         profile.method = [_methodBox stringValue];

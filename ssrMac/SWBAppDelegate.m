@@ -201,7 +201,7 @@ static SWBAppDelegate *appDelegate;
     [serversMenu addItemWithTitle:_L(Open Server Preferences...) action:@selector(showConfigWindow) keyEquivalent:@""];
 }
 
-- (void)updateMenu {
+- (void) updateMenu {
     if (self.useProxy) {
         statusMenuItem.title = _L(Shadowsocks: On);
         enableMenuItem.title = _L(Turn Shadowsocks Off);
