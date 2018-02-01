@@ -272,7 +272,7 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 11;
+			dstSubfolderSpec = 10;
 			files = (
 				3A8E4A572021993D002E2FBA /* GZIP.framework in CopyFiles */,
 				3A8E4A5420219874002E2FBA /* AFNetworking.framework in CopyFiles */,
@@ -1386,6 +1386,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				INFOPLIST_FILE = "ssrMac/ssrMac-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = "-w";
@@ -1424,6 +1425,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				INFOPLIST_FILE = "ssrMac/ssrMac-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = "-w";
