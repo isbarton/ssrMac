@@ -172,6 +172,9 @@ uv_loop_t * loop = NULL;
     if (profile == nil) {
         return;
     }
+    
+    [ShadowsocksRunner saveConfigForKey:kShadowsocksRemarksKey value:profile.remarks];
+
     [ShadowsocksRunner saveConfigForKey:kShadowsocksIPKey value:profile.server];
     [ShadowsocksRunner saveConfigForKey:kShadowsocksPortKey value:[NSString stringWithFormat:@"%ld", (long)profile.serverPort]];
     [ShadowsocksRunner saveConfigForKey:kShadowsocksPasswordKey value:profile.password];
@@ -185,6 +188,9 @@ uv_loop_t * loop = NULL;
 
 + (Profile *) battleFrontGetProfile {
     Profile *profile = [[Profile alloc] init];
+
+    NSString *remarks = [ShadowsocksRunner configForKey:kShadowsocksRemarksKey];
+    profile.remarks = [remarks isKindOfClass:[NSString class]] ? remarks : @"";
 
     NSString *server = [ShadowsocksRunner configForKey:kShadowsocksIPKey];
     profile.server = [server isKindOfClass:[NSString class]] ? server : @"";

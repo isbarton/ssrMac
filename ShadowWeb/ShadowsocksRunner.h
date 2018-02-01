@@ -5,6 +5,7 @@
 
 #import <Foundation/Foundation.h>
 
+#define kShadowsocksRemarksKey @"proxy remarks"
 
 #define kShadowsocksIPKey @"proxy ip"
 #define kShadowsocksPortKey @"proxy port"
