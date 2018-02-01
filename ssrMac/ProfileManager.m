@@ -19,9 +19,7 @@
         // upgrade data from old version
         configuration = [[Configuration alloc] init];
         configuration.profiles = [[NSMutableArray alloc] initWithCapacity:16];
-        if ([ShadowsocksRunner isUsingPublicServer]) {
-            configuration.current = -1;
-        } else {
+        {
             configuration.current = 0;
             Profile *profile = [ShadowsocksRunner battleFrontGetProfile];
             [((NSMutableArray *)configuration.profiles) addObject:profile];
@@ -54,12 +52,10 @@
 + (void)reloadShadowsocksRunner {
     Configuration *configuration = [ProfileManager configuration];
     if (configuration.current == -1) {
-        [ShadowsocksRunner setUsingPublicServer:YES];
         [ShadowsocksRunner reloadConfig];
     } else {
         Profile *profile = configuration.profiles[configuration.current];
         [ShadowsocksRunner battleFrontSaveProfile:profile];
-        [ShadowsocksRunner setUsingPublicServer:NO];
         [ShadowsocksRunner reloadConfig];
     }
 }

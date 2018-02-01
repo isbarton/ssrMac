@@ -65,8 +65,7 @@ void ssr_stop(uv_loop_t *loop) {
 }
 
 + (BOOL)settingsAreNotComplete {
-    if ((![ShadowsocksRunner isUsingPublicServer]) &&
-        ([[NSUserDefaults standardUserDefaults] stringForKey:kShadowsocksIPKey] == nil ||
+    if (([[NSUserDefaults standardUserDefaults] stringForKey:kShadowsocksIPKey] == nil ||
          [[NSUserDefaults standardUserDefaults] stringForKey:kShadowsocksPortKey] == nil ||
          [[NSUserDefaults standardUserDefaults] stringForKey:kShadowsocksPasswordKey] == nil))
     {
@@ -134,8 +133,6 @@ uv_loop_t * loop = NULL;
 
     config_release(config);
 
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kShadowsocksUsePublicServer];
-
     Configuration *configuration = [ProfileManager configuration];
     [((NSMutableArray *) configuration.profiles) addObject:profile];
     [ProfileManager saveConfiguration:configuration];
@@ -150,10 +147,6 @@ uv_loop_t * loop = NULL;
 }
 
 +(NSURL *)generateSSURL {
-    if ([ShadowsocksRunner isUsingPublicServer]) {
-        return nil;
-    }
-    
     char *qrCode = NULL;
 
     Profile *profile = [ShadowsocksRunner battleFrontGetProfile];
@@ -218,19 +211,6 @@ uv_loop_t * loop = NULL;
     profile.obfsParam = [obfsParam isKindOfClass:[NSString class]] ? obfsParam : @"";
 
     return profile;
-}
-
-+ (void)setUsingPublicServer:(BOOL)use {
-    [[NSUserDefaults standardUserDefaults] setBool:use forKey:kShadowsocksUsePublicServer];
-}
-
-+ (BOOL)isUsingPublicServer {
-    NSNumber *usePublicServer = [[NSUserDefaults standardUserDefaults] objectForKey:kShadowsocksUsePublicServer];
-    if (usePublicServer != nil) {
-        return [usePublicServer boolValue];
-    } else {
-        return YES;
-    }
 }
 
 @end

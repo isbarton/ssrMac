@@ -176,12 +176,6 @@ static SWBAppDelegate *appDelegate;
     Configuration *configuration = [ProfileManager configuration];
     [serversMenu removeAllItems];
     int i = 0;
-    NSMenuItem *publicItem = [[NSMenuItem alloc] initWithTitle:_L(Public Server) action:@selector(chooseServer:) keyEquivalent:@""];
-    publicItem.tag = -1;
-    if (-1 == configuration.current) {
-        [publicItem setState:1];
-    }
-    [serversMenu addItem:publicItem];
     for (Profile *profile in configuration.profiles) {
         NSString *title;
         if (profile.remarks.length) {
@@ -225,13 +219,10 @@ static SWBAppDelegate *appDelegate;
         [autoMenuItem setState:0];
         [globalMenuItem setState:1];
     }
-    if ([ShadowsocksRunner isUsingPublicServer]) {
-        [qrCodeMenuItem setTarget:nil];
-        [qrCodeMenuItem setAction:NULL];
-    } else {
+
         [qrCodeMenuItem setTarget:self];
         [qrCodeMenuItem setAction:@selector(showQRCode)];
-    }
+
     [self updateServersMenu];
 }
 

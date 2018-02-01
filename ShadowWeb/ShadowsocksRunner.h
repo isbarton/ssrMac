@@ -17,7 +17,6 @@
 #define kShadowsocksObfsParamKey @"proxy obfsParam"
 
 #define kShadowsocksProxyModeKey @"proxy mode"
-#define kShadowsocksUsePublicServer @"public server"
 
 @class Profile;
 
@@ -30,8 +29,6 @@
 + (NSURL *)generateSSURL;
 + (NSString *)configForKey:(NSString *)key;
 + (void)saveConfigForKey:(NSString *)key value:(NSString *)value;
-+ (void)setUsingPublicServer:(BOOL)use;
-+ (BOOL)isUsingPublicServer;
 
 + (void) battleFrontSaveProfile:(Profile *)profile;
 + (Profile *) battleFrontGetProfile;
