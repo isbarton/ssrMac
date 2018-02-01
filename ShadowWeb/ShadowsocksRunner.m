@@ -6,6 +6,8 @@
 #import "ShadowsocksRunner.h"
 #import "SWBAppDelegate.h"
 #import "Profile.h"
+#import "Configuration.h"
+#import "ProfileManager.h"
 #include "ssrcipher.h"
 #include "defs.h"
 #include "ssr_qr_code.h"
@@ -128,11 +130,21 @@ uv_loop_t * loop = NULL;
     profile.obfs = [NSString stringWithUTF8String:config->obfs];
     profile.obfsParam = [NSString stringWithUTF8String:config->obfs_param?:""];
     
-    [ShadowsocksRunner battleFrontSaveProfile:profile];
-    
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kShadowsocksUsePublicServer];
-    [ShadowsocksRunner reloadConfig];
+    profile.remarks = [NSString stringWithUTF8String:config->remarks?:""];
+
     config_release(config);
+
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kShadowsocksUsePublicServer];
+
+    Configuration *configuration = [ProfileManager configuration];
+    [((NSMutableArray *) configuration.profiles) addObject:profile];
+    [ProfileManager saveConfiguration:configuration];
+    
+    [ShadowsocksRunner reloadConfig];
+
+    SWBAppDelegate *appDelegate = (SWBAppDelegate *) [NSApplication sharedApplication].delegate;
+    NSAssert([appDelegate isKindOfClass:[SWBAppDelegate class]], @"SWBAppDelegate");
+    [appDelegate updateMenu];
     
     return YES;
 }

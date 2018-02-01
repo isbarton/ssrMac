@@ -12,4 +12,5 @@
 @property (assign) IBOutlet NSWindow *window;
 @property (nonatomic, strong) NSStatusItem* item;
 - (NSInteger) toggleSystemProxyExternal;
+- (void) updateMenu;
 @end
