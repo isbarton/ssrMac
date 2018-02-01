@@ -9,13 +9,13 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SWBConfigWindowController">
             <connections>
+                <outlet property="_passwordField" destination="WEx-Nh-Ean" id="cu6-pU-H2h"/>
                 <outlet property="cancelButton" destination="bnF-KP-shG" id="rkI-h0-eju"/>
                 <outlet property="methodBox" destination="BON-H1-lGZ" id="PW7-P3-YAW"/>
                 <outlet property="obfsBox" destination="poV-ub-J3L" id="Qi6-oG-z3n"/>
                 <outlet property="obfsParamField" destination="7Vr-xD-yHo" id="WXa-b7-PzT"/>
                 <outlet property="okButton" destination="HTJ-tt-Aqd" id="H13-v7-bhb"/>
                 <outlet property="passwordCheckBox" destination="quf-WU-RWM" id="A25-Nc-Vyj"/>
-                <outlet property="passwordField" destination="WEx-Nh-Ean" id="vyD-rv-wHr"/>
                 <outlet property="placeholderLabel" destination="s5M-uC-d3f" id="GcM-8b-j5A"/>
                 <outlet property="portField" destination="xMg-kR-Jg1" id="mc5-54-XQH"/>
                 <outlet property="protocolBox" destination="BU5-KP-SgQ" id="yZv-vx-scr"/>
@@ -107,7 +107,7 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <secureTextField verticalHuggingPriority="750" misplaced="YES" id="WEx-Nh-Ean">
+                                <secureTextField verticalHuggingPriority="750" misplaced="YES" id="WEx-Nh-Ean" customClass="KSPasswordField">
                                     <rect key="frame" x="140" y="173" width="166" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="Tb5-0w-ubb">
@@ -126,6 +126,9 @@
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
+                                    <connections>
+                                        <action selector="passwordChkBoxClicked:" target="-2" id="Bzh-l7-uRo"/>
+                                    </connections>
                                 </button>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="doy-hH-4FP">
                                     <rect key="frame" x="-2" y="141" width="139" height="17"/>

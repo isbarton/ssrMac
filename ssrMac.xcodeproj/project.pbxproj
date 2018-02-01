@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A1A998D2022FFF000889D2E /* KSPasswordField.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1A997A2022FFF000889D2E /* KSPasswordField.m */; };
 		3A40B2D12019E0BC00F33F80 /* qrCodeOnScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A40B2D02019E0BC00F33F80 /* qrCodeOnScreen.m */; };
 		3A4AAEB4201B2FB7002F23AF /* ConfigWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A4AAEB3201B2FB7002F23AF /* ConfigWindow.xib */; };
 		3A4AAEB6201B5981002F23AF /* libuv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4AAEB5201B5981002F23AF /* libuv.a */; };
@@ -282,6 +283,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3A1A997A2022FFF000889D2E /* KSPasswordField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPasswordField.m; sourceTree = "<group>"; };
+		3A1A998C2022FFF000889D2E /* KSPasswordField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPasswordField.h; sourceTree = "<group>"; };
 		3A40B2CF2019E0BC00F33F80 /* qrCodeOnScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = qrCodeOnScreen.h; sourceTree = "<group>"; };
 		3A40B2D02019E0BC00F33F80 /* qrCodeOnScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = qrCodeOnScreen.m; sourceTree = "<group>"; };
 		3A4AAEB3201B2FB7002F23AF /* ConfigWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigWindow.xib; sourceTree = "<group>"; };
@@ -666,6 +669,8 @@
 				EB189F33A120A109D84FF977 /* SWBConfigWindowController.h */,
 				EB189ABF1BF9729F1E0E8F72 /* SWBApplication.m */,
 				EB189A194D9EB70D1C8E7123 /* SWBApplication.h */,
+				3A1A998C2022FFF000889D2E /* KSPasswordField.h */,
+				3A1A997A2022FFF000889D2E /* KSPasswordField.m */,
 				625E5BBB19EA36D2007A5124 /* SWBQRCodeWindowController.h */,
 				625E5BBC19EA36D2007A5124 /* SWBQRCodeWindowController.m */,
 				628C91C21A07AB4500BA1566 /* Configuration.h */,
@@ -1060,6 +1065,7 @@
 				628C91C41A07AB4500BA1566 /* Configuration.m in Sources */,
 				627A6E0518B47E9300493BBC /* main.m in Sources */,
 				627A6E0C18B47E9300493BBC /* SWBAppDelegate.m in Sources */,
+				3A1A998D2022FFF000889D2E /* KSPasswordField.m in Sources */,
 				EB1897A04CF0382A754FE700 /* SWBConfigWindowController.m in Sources */,
 				625E5BBD19EA36D2007A5124 /* SWBQRCodeWindowController.m in Sources */,
 				3ACA8CCB2019C17800839E41 /* ShadowsocksRunner.m in Sources */,

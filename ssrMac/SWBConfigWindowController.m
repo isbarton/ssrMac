@@ -10,9 +10,12 @@
 #import "ProfileManager.h"
 #import "encrypt.h"
 #include "ssr_cipher_names.h"
+#import "KSPasswordField.h"
 
 
 @implementation SWBConfigWindowController {
+    IBOutlet KSPasswordField *_passwordField;
+
     Configuration *_configuration;
 }
 
@@ -246,6 +249,10 @@
 
 - (IBAction)cancel:(id)sender {
     [self.window performClose:self];
+}
+
+- (IBAction) passwordChkBoxClicked:(NSButton *)sender {
+    [_passwordField setShowsText:(sender.state == NSOnState)];
 }
 
 - (void)shakeWindow {
