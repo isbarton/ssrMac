@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
-        <plugIn identifier="com.apple.WebKitIBPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="13771"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SWBQRCodeWindowController">
@@ -16,26 +17,33 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="QR Code" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" texturedBackground="YES"/>
-            <rect key="contentRect" x="196" y="240" width="250" height="250"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <rect key="contentRect" x="196" y="240" width="250" height="296"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1600" height="877"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
+                <rect key="frame" x="0.0" y="0.0" width="250" height="296"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <webView translatesAutoresizingMaskIntoConstraints="NO" id="ojI-LR-jEw">
-                        <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
+                    <webView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ojI-LR-jEw">
+                        <rect key="frame" x="0.0" y="46" width="250" height="250"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                         <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12">
                             <nil key="identifier"/>
                         </webPreferences>
                     </webView>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5nO-TY-oZV">
+                        <rect key="frame" x="20" y="12" width="210" height="19"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        <buttonCell key="cell" type="roundRect" title="Copy to Pasteboard" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nGs-Xn-SC6">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="cellTitle"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="copyToPasteboardClicked:" target="-2" id="F44-pQ-SbQ"/>
+                        </connections>
+                    </button>
                 </subviews>
-                <constraints>
-                    <constraint firstAttribute="trailing" secondItem="ojI-LR-jEw" secondAttribute="trailing" id="ImJ-r1-FF9"/>
-                    <constraint firstAttribute="bottom" secondItem="ojI-LR-jEw" secondAttribute="bottom" id="LQv-2G-kyf"/>
-                    <constraint firstItem="ojI-LR-jEw" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="kok-J1-X08"/>
-                    <constraint firstItem="ojI-LR-jEw" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="voV-aN-Ggt"/>
-                </constraints>
             </view>
+            <point key="canvasLocation" x="139" y="185"/>
         </window>
     </objects>
 </document>
