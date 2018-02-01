@@ -6,7 +6,7 @@ ShadowsocksR client for macOS
 
 macOS
 -----
-[![OSX Icon](https://raw.github.com/shadowsocks/shadowsocks-iOS/master/osx_128.png)](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help)  
+[![OSX Icon](https://raw.githubusercontent.com/ShadowsocksR-Live/ssrMac/master/osx_128.png)](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help)  
 [OSX Version](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help)
 
 
