@@ -77,16 +77,16 @@ static SWBAppDelegate *appDelegate;
     self.item.image = image;
     self.item.highlightMode = YES;
     
-    NSMenu *menu = [[NSMenu alloc] initWithTitle:@"Shadowsocks"];
+    NSMenu *menu = [[NSMenu alloc] initWithTitle:@"ShadowsocksR"];
     [menu setMinimumWidth:200];
     
-    statusMenuItem = [[NSMenuItem alloc] initWithTitle:_L(Shadowsocks Off) action:nil keyEquivalent:@""];
+    statusMenuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"ShadowsocksR Off", nil) action:nil keyEquivalent:@""];
     
-    enableMenuItem = [[NSMenuItem alloc] initWithTitle:_L(Turn Shadowsocks Off) action:@selector(toggleRunning) keyEquivalent:@""];
+    enableMenuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Turn ShadowsocksR Off", nil) action:@selector(toggleRunning) keyEquivalent:@""];
 //    [statusMenuItem setEnabled:NO];
-    autoMenuItem = [[NSMenuItem alloc] initWithTitle:_L(Auto Proxy Mode) action:@selector(enableAutoProxy) keyEquivalent:@""];
+    autoMenuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Auto Proxy Mode", nil) action:@selector(enableAutoProxy) keyEquivalent:@""];
 //    [enableMenuItem setState:1];
-    globalMenuItem = [[NSMenuItem alloc] initWithTitle:_L(Global Mode) action:@selector(enableGlobal)
+    globalMenuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Global Mode", nil) action:@selector(enableGlobal)
         keyEquivalent:@""];
     
     [menu addItem:statusMenuItem];
@@ -99,23 +99,23 @@ static SWBAppDelegate *appDelegate;
 
     serversMenu = [[NSMenu alloc] init];
     NSMenuItem *serversItem = [[NSMenuItem alloc] init];
-    [serversItem setTitle:_L(Servers)];
+    [serversItem setTitle:NSLocalizedString(@"Servers", nil)];
     [serversItem setSubmenu:serversMenu];
     [menu addItem:serversItem];
 
     [menu addItem:[NSMenuItem separatorItem]];
-    [menu addItemWithTitle:_L(Edit PAC for Auto Proxy Mode...) action:@selector(editPAC) keyEquivalent:@""];
-    [menu addItemWithTitle:_L(Update PAC from GFWList) action:@selector(updatePACFromGFWList) keyEquivalent:@""];
-    [menu addItemWithTitle:_L(Edit User Rule for GFWList...) action:@selector(editUserRule) keyEquivalent:@""];
+    [menu addItemWithTitle:NSLocalizedString(@"Edit PAC for Auto Proxy Mode...", nil) action:@selector(editPAC) keyEquivalent:@""];
+    [menu addItemWithTitle:NSLocalizedString(@"Update PAC from GFWList", nil) action:@selector(updatePACFromGFWList) keyEquivalent:@""];
+    [menu addItemWithTitle:NSLocalizedString(@"Edit User Rule for GFWList...", nil) action:@selector(editUserRule) keyEquivalent:@""];
     [menu addItem:[NSMenuItem separatorItem]];
-    qrCodeMenuItem = [[NSMenuItem alloc] initWithTitle:_L(Generate QR Code...) action:@selector(showQRCode) keyEquivalent:@""];
+    qrCodeMenuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Generate QR Code...", nil) action:@selector(showQRCode) keyEquivalent:@""];
     [menu addItem:qrCodeMenuItem];
-    [menu addItem:[[NSMenuItem alloc] initWithTitle:_L(Scan QR Code from Screen...) action:@selector(scanQRCode) keyEquivalent:@""]];
+    [menu addItem:[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Scan QR Code from Screen...", nil) action:@selector(scanQRCode) keyEquivalent:@""]];
     [menu addItem:[NSMenuItem separatorItem]];
-    [menu addItemWithTitle:_L(Show Logs...) action:@selector(showLogs) keyEquivalent:@""];
-    [menu addItemWithTitle:_L(Help) action:@selector(showHelp) keyEquivalent:@""];
+    [menu addItemWithTitle:NSLocalizedString(@"Show Logs...", nil) action:@selector(showLogs) keyEquivalent:@""];
+    [menu addItemWithTitle:NSLocalizedString(@"Help", nil) action:@selector(showHelp) keyEquivalent:@""];
     [menu addItem:[NSMenuItem separatorItem]];
-    [menu addItemWithTitle:_L(Quit) action:@selector(exit) keyEquivalent:@""];
+    [menu addItemWithTitle:NSLocalizedString(@"Quit", nil) action:@selector(exit) keyEquivalent:@""];
     self.item.menu = menu;
     [self installHelper];
     [self initializeProxy];
@@ -192,19 +192,19 @@ static SWBAppDelegate *appDelegate;
         i++;
     }
     [serversMenu addItem:[NSMenuItem separatorItem]];
-    [serversMenu addItemWithTitle:_L(Open Server Preferences...) action:@selector(showConfigWindow) keyEquivalent:@""];
+    [serversMenu addItemWithTitle:NSLocalizedString(@"Open Server Preferences...", nil) action:@selector(showConfigWindow) keyEquivalent:@""];
 }
 
 - (void) updateMenu {
     if (self.useProxy) {
-        statusMenuItem.title = _L(Shadowsocks: On);
-        enableMenuItem.title = _L(Turn Shadowsocks Off);
+        statusMenuItem.title = NSLocalizedString(@"ShadowsocksR: On", nil);
+        enableMenuItem.title = NSLocalizedString(@"Turn ShadowsocksR Off", nil);
         NSImage *image = [NSImage imageNamed:@"menu_icon"];
         [image setTemplate:YES];
         self.item.image = image;
     } else {
-        statusMenuItem.title = _L(Shadowsocks: Off);
-        enableMenuItem.title = _L(Turn Shadowsocks On);
+        statusMenuItem.title = NSLocalizedString(@"ShadowsocksR: Off", nil);
+        enableMenuItem.title = NSLocalizedString(@"Turn ShadowsocksR On", nil);
         NSImage *image = [NSImage imageNamed:@"menu_icon_disabled"];
         [image setTemplate:YES];
         self.item.image = image;
@@ -453,7 +453,7 @@ void onPACChange(
     NSString *portStr = [NSString stringWithFormat:@"%ld", (long)_listenPort];
 
     // this log is very important
-    NSLog(@"run shadowsocks helper: %@", kShadowsocksHelper);
+    NSLog(@"run ShadowsocksR helper: %@", kShadowsocksHelper);
     [task setArguments:@[mode, portStr]];
 
     NSPipe *stdoutpipe = [NSPipe pipe];
@@ -537,17 +537,17 @@ void onPACChange(
 
 - (void) dealWithIncomingURL:(NSString *)url {
     NSAlert *alert = [[NSAlert alloc] init];
-    [alert addButtonWithTitle:_L(OK)];
-    [alert addButtonWithTitle:_L(Cancel)];
-    [alert setMessageText:_L(Use this server?)];
+    [alert addButtonWithTitle:NSLocalizedString(@"OK", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+    [alert setMessageText:NSLocalizedString(@"Use this server?", nil)];
     [alert setInformativeText:url];
     [alert setAlertStyle:NSInformationalAlertStyle];
     if ([alert runModal] == NSAlertFirstButtonReturn) {
         BOOL result = [ShadowsocksRunner openSSURL:[NSURL URLWithString:url]];
         if (!result) {
             alert = [[NSAlert alloc] init];
-            [alert addButtonWithTitle:_L(OK)];
-            [alert setMessageText:@"Invalid Shadowsocks URL"];
+            [alert addButtonWithTitle:NSLocalizedString(@"OK", nil)];
+            [alert setMessageText:@"Invalid ShadowsocksR URL"];
             [alert setAlertStyle:NSCriticalAlertStyle];
             [alert runModal];
         }
