@@ -319,7 +319,8 @@ void onPACChange(
 }
 
 - (void)showHelp {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:NSLocalizedString(@"https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help", nil)]];
+    NSString *url = NSLocalizedString(@"https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help", nil);
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:url]];
 }
 
 - (void)showConfigWindow {
@@ -483,7 +484,8 @@ void onPACChange(
 }
 
 - (void)updatePACFromGFWList {
-    [manager GET:@"https://autoproxy-gfwlist.googlecode.com/svn/trunk/gfwlist.txt" parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+    NSString *gfwList = @"https://autoproxy-gfwlist.googlecode.com/svn/trunk/gfwlist.txt";
+    [manager GET:gfwList parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         // Objective-C is bullshit
         NSData *data = responseObject;
         NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
